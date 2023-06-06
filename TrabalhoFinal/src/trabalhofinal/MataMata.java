@@ -5,22 +5,23 @@
 package trabalhofinal;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 /**
  *
  * @author guton
  */
-public class MataMata extends Torneio{
+public class MataMata extends Torneio implements gerenciarTorneio{
     private TornamentTree chavesTorneio;
     
     MataMata(){
         super();
     }
     
-    MataMata(String nome, String descricao, String local, LocalDateTime dataInicio, LocalDateTime dataFinal,
-            LocalDateTime dataFimInscricoes, String regras, int id, int maxParticipantes, int numJogosPartida, Organizador organizador){
+    MataMata(String nome, String descricao, String local, LocalDateTime dataInicio, LocalDateTime dataInicioInscricao,int periodoTorneio, int periodoInscricao, 
+            String regras, int id, int minParticipantes, int maxParticipantes, int numJogosPartida, Organizador organizador){
         
-        super(nome, descricao, local, dataInicio, dataFinal, dataFimInscricoes, regras, id, maxParticipantes, numJogosPartida, organizador);
+        super(nome, descricao, local, dataInicio, dataInicioInscricao, periodoTorneio, periodoInscricao, regras, id, minParticipantes, maxParticipantes, numJogosPartida, organizador);
         this.chavesTorneio = new TornamentTree();            
     }
     
@@ -32,6 +33,12 @@ public class MataMata extends Torneio{
         this.chavesTorneio = chaves;
     }
     
-    public void updateCgavesTorneio(){}
+    public void atualizarPontuacao(){};
+    
+    public void setResultadoPartida(ArrayList<int[]> resultados, ArrayList<Boolean> capotes){};
+    
+    public Partida getProximaPartida(){};
+    
+    public Participante getCampeao(){};
     
 }

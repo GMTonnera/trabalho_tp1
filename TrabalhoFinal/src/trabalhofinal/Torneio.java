@@ -12,17 +12,17 @@ import java.util.ArrayList;
  * @author guton
  */
 public class Torneio {
-    protected int id, maxParticipantes, statusTorneio, numJogosPartida;
+    protected int id, minParticipantes, maxParticipantes, statusTorneio, numJogosPartida, periodoInscricao, periodoTorneio;
     protected String nome, descricao, local, regras;
-    protected LocalDateTime dataInicio, dataFinal, dataFimInscricoes; 
+    protected LocalDateTime dataInicio, dataInicioInscricao; 
     protected ArrayList<Participante> participantes;
     protected Organizador organizador;
     protected ArrayList<Partida> partidas; 
             
     Torneio(){}
     
-    Torneio(String nome, String descricao, String local, LocalDateTime dataInicio, LocalDateTime dataFinal,
-            LocalDateTime dataFimInscricoes, String regras, int id, int maxParticipantes, int numJogosPartida, Organizador organizador){
+    Torneio(String nome, String descricao, String local, LocalDateTime dataInicio, LocalDateTime dataInicioInscricao,int periodoTorneio, int periodoInscricao, 
+            String regras, int id, int minParticipantes, int maxParticipantes, int numJogosPartida, Organizador organizador){
         
         this.id = id;
         this.maxParticipantes = maxParticipantes;
@@ -33,11 +33,13 @@ public class Torneio {
         this.local = local;
         this.regras = regras;
         this.dataInicio = dataInicio;
-        this.dataFinal = dataFinal;
-        this.dataFimInscricoes = dataFimInscricoes;
+        this.periodoTorneio = periodoTorneio;
+        this.periodoInscricao = periodoInscricao;
         this.participantes = new ArrayList();
         this.organizador = organizador;
         this.partidas = new ArrayList();
+        this.minParticipantes = minParticipantes;
+        this.dataInicioInscricao = dataInicioInscricao;
     }
     
     public int getId(){
@@ -111,22 +113,42 @@ public class Torneio {
     public void setDataInicio(LocalDateTime dataInicio){
         this.dataInicio = dataInicio;
     }
-    
-    public LocalDateTime getDataFinal(){
-        return this.dataFinal;
+
+    public int getMinParticipantes() {
+        return minParticipantes;
     }
-    
-    public void setDataFinal(LocalDateTime dataFinal){
-        this.dataFinal = dataFinal;
+
+    public int getPeriodoInscricao() {
+        return periodoInscricao;
     }
-        
-    public LocalDateTime getDataFimInscricoes(){
-        return this.dataFimInscricoes;
+
+    public int getPeriodoTorneio() {
+        return periodoTorneio;
     }
-    
-    public void setDataFimInscricoes(LocalDateTime dataFimInscricoes){
-        this.dataFimInscricoes = dataFimInscricoes;
+
+    public void setDataInicioInscricao(LocalDateTime dataInicioInscricao) {
+        this.dataInicioInscricao = dataInicioInscricao;
     }
+
+
+    public void setMinParticipantes(int minParticipantes) {
+        this.minParticipantes = minParticipantes;
+    }
+
+    public void setPeriodoInscricao(int periodoInscricao) {
+        this.periodoInscricao = periodoInscricao;
+    }
+
+    public void setPeriodoTorneio(int periodoTorneio) {
+        this.periodoTorneio = periodoTorneio;
+    }
+
+    public LocalDateTime getDataInicioInscricao() {
+        return dataInicioInscricao;
+    }
+
+
+
     
     public ArrayList<Partida> getPartidas(){
         return this.partidas;
@@ -154,11 +176,5 @@ public class Torneio {
     
     public void addPartida(Partida partida){
         this.partidas.add(partida);
-    }
-    
-    public void gerarPartidas(){}
-    
-    public void adicionarResultado(){}
-    
-    
+    }   
 }

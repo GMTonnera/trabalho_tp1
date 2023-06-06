@@ -8,7 +8,7 @@ package trabalhofinal;
  *
  * @author guton
  */
-public class Usuario {
+abstract public class Usuario {
     protected int id;
     protected String nome, curso, email, senha;
     
