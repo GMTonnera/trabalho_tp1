@@ -4,6 +4,9 @@
  */
 package telas;
 
+import javax.swing.JOptionPane;
+import trabalhofinal.TrabalhoFinal;
+
 /**
  *
  * @author Vini
@@ -15,6 +18,7 @@ public class Login extends javax.swing.JFrame {
      */
     public Login() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -60,8 +64,18 @@ public class Login extends javax.swing.JFrame {
         });
 
         lblCadastro.setText("Novo usuário? clique aqui");
+        lblCadastro.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblCadastroMouseClicked(evt);
+            }
+        });
 
         btnLogin.setText("Login");
+        btnLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLoginActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlLoginLayout = new javax.swing.GroupLayout(pnlLogin);
         pnlLogin.setLayout(pnlLoginLayout);
@@ -147,6 +161,29 @@ public class Login extends javax.swing.JFrame {
     private void txtSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSenhaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtSenhaActionPerformed
+
+    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
+        // TODO add your handling code here:
+        if(this.txtEmail.getText().equals("") || this.txtSenha.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Por favor, preencha todos os campos!", "Mensagem", JOptionPane.INFORMATION_MESSAGE);
+        } else{
+            // Verificar se o usuário está no banco de dados
+            boolean flag = TrabalhoFinal.checkUsuario(this.txtEmail.getText(), this.txtSenha.getText());
+            if(flag){
+                TrabalhoFinal.login(this.txtEmail.getText(), this.txtSenha.getText());
+                this.setVisible(false);
+                new home().setVisible(true);
+            } else{
+                JOptionPane.showMessageDialog(null, "Usuário não encontrado!", "Mensagem", JOptionPane.INFORMATION_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_btnLoginActionPerformed
+
+    private void lblCadastroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCadastroMouseClicked
+        // TODO add your handling code here:
+        this.setVisible(false);
+        new Cadastro().setVisible(true);
+    }//GEN-LAST:event_lblCadastroMouseClicked
 
     /**
      * @param args the command line arguments
