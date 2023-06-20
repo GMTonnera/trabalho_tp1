@@ -37,8 +37,13 @@ public class MataMata extends Torneio implements gerenciarTorneio{
     
     public void setResultadoPartida(ArrayList<int[]> resultados, ArrayList<Boolean> capotes){};
     
-    public Partida getProximaPartida(){};
     
-    public Participante getCampeao(){};
+    public Partida getProximaPartida(){
+        return new Partida();
+    };
+    
+    public Participante getCampeao(){
+        return new Participante();
+    };
     
 }

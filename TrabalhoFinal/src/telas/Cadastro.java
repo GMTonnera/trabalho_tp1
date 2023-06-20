@@ -4,6 +4,9 @@
  */
 package telas;
 
+import javax.swing.JOptionPane;
+import trabalhofinal.TrabalhoFinal;
+
 /**
  *
  * @author Vini
@@ -15,6 +18,7 @@ public class Cadastro extends javax.swing.JFrame {
      */
     public Cadastro() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -65,8 +69,18 @@ public class Cadastro extends javax.swing.JFrame {
         });
 
         lblLogin.setText("já tem conta? clique aqui");
+        lblLogin.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblLoginMouseClicked(evt);
+            }
+        });
 
         btnCadastro.setText("Cadastrar");
+        btnCadastro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCadastroActionPerformed(evt);
+            }
+        });
 
         lblNome.setText("Nome");
 
@@ -179,6 +193,32 @@ public class Cadastro extends javax.swing.JFrame {
     private void txtSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSenhaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtSenhaActionPerformed
+
+    private void btnCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastroActionPerformed
+        // TODO add your handling code here:
+        if(this.txtCurso.getText().equals("") || this.txtEmail.getText().equals("") || this.txtNome.getText().equals("") ||this.txtSenha.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Por favor, preencha todos os campos!", "Mensagem", JOptionPane.INFORMATION_MESSAGE);
+        } else{
+            // Criar Usuário
+            TrabalhoFinal.createUsuario(txtNome.getText(), txtCurso.getText(), txtEmail.getText(), txtSenha.getText(), cbxTipo.getSelectedIndex());
+            
+            
+            System.out.println("Usuário criado!");
+            this.txtCurso.setText("");
+            this.txtNome.setText("");
+            this.txtEmail.setText("");
+            this.txtSenha.setText("");
+            JOptionPane.showMessageDialog(null, "Usuário criado!", "Mensagem", JOptionPane.INFORMATION_MESSAGE);
+            
+        }
+    }//GEN-LAST:event_btnCadastroActionPerformed
+
+    private void lblLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblLoginMouseClicked
+        // TODO add your handling code here:
+        this.setVisible(false);
+        new Login().setVisible(true);
+        
+    }//GEN-LAST:event_lblLoginMouseClicked
 
     /**
      * @param args the command line arguments

@@ -182,11 +182,17 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="j&#xe1; tem conta? clique aqui"/>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lblLoginMouseClicked"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnCadastro">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Cadastrar"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCadastroActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="lblNome">
               <Properties>
