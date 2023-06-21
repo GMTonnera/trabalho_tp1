@@ -4,10 +4,10 @@
  */
 package telas;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import java.time.LocalDate;
 import javax.swing.JOptionPane;
 import trabalhofinal.TrabalhoFinal;
+import trabalhofinal.Organizador;
 
 /**
  *
@@ -20,6 +20,7 @@ public class TelaCriarTorneio extends javax.swing.JFrame {
      */
     public TelaCriarTorneio() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -59,11 +60,20 @@ public class TelaCriarTorneio extends javax.swing.JFrame {
         lblPeriodoInscr = new javax.swing.JLabel();
         txtPeriodoInscr = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         lblInicioJogos.setText("Início dos Jogos:");
 
-        ftxtInicioJogos.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
+        try {
+            ftxtInicioJogos.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("####-##-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        ftxtInicioJogos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ftxtInicioJogosActionPerformed(evt);
+            }
+        });
 
         lblPeriodoJogos.setText("Período dos jogos(dias):");
 
@@ -103,7 +113,16 @@ public class TelaCriarTorneio extends javax.swing.JFrame {
 
         lblInicioInscr.setText("Inicio das Inscrições:");
 
-        ftxtInicioInscr.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
+        try {
+            ftxtInicioInscr.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("####-##-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        ftxtInicioInscr.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ftxtInicioInscrActionPerformed(evt);
+            }
+        });
 
         lblPeriodoInscr.setText("Período de inscrições (dias):");
 
@@ -116,20 +135,19 @@ public class TelaCriarTorneio extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(lblNome)
                     .addComponent(lblLocal)
-                    .addComponent(txtNumeroMaxPart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtNumeroMinPart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblNumeroMinPart)
                     .addComponent(lblNumeroMaxPart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lblInicioInscr)
                     .addComponent(ftxtInicioInscr, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblPeriodoInscr)
-                    .addComponent(txtPeriodoInscr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtLocal)
-                    .addComponent(txtNome))
+                    .addComponent(txtNome)
+                    .addComponent(txtPeriodoInscr, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNumeroMinPart, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNumeroMaxPart, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblNumeroJogos)
-                    .addComponent(txtNumeroJogos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblDescricao)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblTipo)
@@ -138,23 +156,23 @@ public class TelaCriarTorneio extends javax.swing.JFrame {
                     .addComponent(lblInicioJogos)
                     .addComponent(ftxtInicioJogos, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblPeriodoJogos)
-                    .addComponent(txtPeriodoJogos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtPeriodoJogos, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNumeroJogos, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(34, 34, 34))
             .addGroup(layout.createSequentialGroup()
+                .addGap(258, 258, 258)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(302, 302, 302)
-                        .addComponent(btnCriar))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(258, 258, 258)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblRegra)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(cbxRegra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(lblTitulo))))
-                .addGap(117, 334, Short.MAX_VALUE))
+                        .addComponent(lblRegra)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(cbxRegra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblTitulo))
+                .addContainerGap(334, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(302, 302, 302)
+                .addComponent(btnCriar)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -228,9 +246,42 @@ public class TelaCriarTorneio extends javax.swing.JFrame {
                 this.ftxtInicioJogos.getText().equals("") || this.ftxtInicioInscr.getText().equals("")){
             JOptionPane.showMessageDialog(null, "Por favor, preencha todos os campos!", "Mensagem", JOptionPane.INFORMATION_MESSAGE);
         } else{
-            TrabalhoFinal.criarTorneio(this.txtNome.getText(), this.txtaDescricao.getText(), this.txtLocal.getText(), LocalDateTime.parse(text, DateTimeFormatter.ISO_DATE), LocalDateTime.MIN, PROPERTIES, EXIT_ON_CLOSE, regras, WIDTH, PROPERTIES, PROPERTIES, PROPERTIES, organizador, WIDTH);
+            TrabalhoFinal.criarTorneio(this.txtNome.getText(),
+                                   this.txtaDescricao.getText(),
+                                   this.txtLocal.getText(),
+                                   LocalDate.parse(this.ftxtInicioJogos.getText()),
+                                   LocalDate.parse(this.ftxtInicioInscr.getText()),
+                                   Integer.parseInt(this.txtPeriodoJogos.getText()),
+                                   Integer.parseInt(this.txtPeriodoInscr.getText()),
+                                   "Sinuquinha",
+                                   Integer.parseInt(this.txtNumeroMinPart.getText()),
+                                   Integer.parseInt(this.txtNumeroMaxPart.getText()),
+                                   Integer.parseInt(this.txtNumeroJogos.getText()),
+                                   (Organizador) TrabalhoFinal.login,
+                                   this.cbxTipo.getSelectedIndex()
+                                   );
+            
+            JOptionPane.showMessageDialog(null, "Torneio criado com sucesso!", "Mensagem", JOptionPane.INFORMATION_MESSAGE);
+            this.txtLocal.setText("");
+            this.txtNome.setText("");
+            this.txtNumeroJogos.setText("");
+            this.txtNumeroMaxPart.setText("");
+            this.txtNumeroMinPart.setText("");
+            this.txtPeriodoInscr.setText("");
+            this.txtPeriodoJogos.setText("");
+            this.txtaDescricao.setText("");
+            this.ftxtInicioJogos.setText("");
+            this.ftxtInicioInscr.setText("");
         }
     }//GEN-LAST:event_btnCriarActionPerformed
+
+    private void ftxtInicioInscrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ftxtInicioInscrActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ftxtInicioInscrActionPerformed
+
+    private void ftxtInicioJogosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ftxtInicioJogosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ftxtInicioJogosActionPerformed
 
     /**
      * @param args the command line arguments

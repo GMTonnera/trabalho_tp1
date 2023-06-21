@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
 package trabalhofinal;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import telas.Login;
 import java.util.ArrayList;
 /**
@@ -19,8 +19,10 @@ public class TrabalhoFinal {
      */
     public static Usuario login;
     public static ArrayList<Usuario> usuarios = new ArrayList();
-    public static int currentId = 0;
+    public static int currentUserId = 0;
+    public static int currentTornamentId = 0;
     public static ArrayList<Torneio> torneios = new ArrayList();
+    public static Torneio currentTorneio;
     
     
     public static void main(String[] args) {
@@ -34,13 +36,13 @@ public class TrabalhoFinal {
     public static void createUsuario(String nome, String curso, String email, String senha, int tipo){
         if(tipo == 0){
             // Criar um Participante
-            TrabalhoFinal.usuarios.add(new Participante(TrabalhoFinal.currentId, nome, curso, email, senha));
+            TrabalhoFinal.usuarios.add(new Participante(TrabalhoFinal.currentUserId, nome, curso, email, senha));
         } else{
             // Criar um Organizador
-            TrabalhoFinal.usuarios.add(new Organizador(TrabalhoFinal.currentId, nome, curso, email, senha));
+            TrabalhoFinal.usuarios.add(new Organizador(TrabalhoFinal.currentUserId, nome, curso, email, senha));
         }
         
-        TrabalhoFinal.currentId += 1;
+        TrabalhoFinal.currentUserId += 1;
     }
       
     public static boolean checkUsuario(String email, String senha){
@@ -67,12 +69,17 @@ public class TrabalhoFinal {
         
     }
     
-    public static void criarTorneio(String nome, String descricao, String local, LocalDateTime dataInicio, LocalDateTime dataInicioInscricao,int periodoTorneio, int periodoInscricao, 
-                                    String regras, int id, int minParticipantes, int maxParticipantes, int numJogosPartida, Organizador organizador, int tipo){
+    public static void criarTorneio(String nome, String descricao, String local, LocalDate dataInicio, LocalDate dataInicioInscricao,int periodoTorneio, int periodoInscricao, 
+                                    String regras, int minParticipantes, int maxParticipantes, int numJogosPartida, Organizador organizador, int tipo){
         if(tipo == 0){
-            TrabalhoFinal.torneios.add(new MataMata(nome, descricao, local, dataInicio, dataInicioInscricao, periodoTorneio, periodoInscricao, regras, id, minParticipantes, maxParticipantes, numJogosPartida, organizador));
+            TrabalhoFinal.torneios.add(new MataMata(nome, descricao, local, dataInicio, dataInicioInscricao, periodoTorneio, periodoInscricao, regras, TrabalhoFinal.currentTornamentId, minParticipantes, maxParticipantes, numJogosPartida, organizador));
         } else{
-            TrabalhoFinal.torneios.add(new Liga(nome, descricao, local, dataInicio, dataInicioInscricao, periodoTorneio, periodoInscricao, regras, id, minParticipantes, maxParticipantes, numJogosPartida, organizador));
+            TrabalhoFinal.torneios.add(new Liga(nome, descricao, local, dataInicio, dataInicioInscricao, periodoTorneio, periodoInscricao, regras, TrabalhoFinal.currentTornamentId, minParticipantes, maxParticipantes, numJogosPartida, organizador));
         }
+        TrabalhoFinal.currentTornamentId += 1;
     }
+    
+    public static void setCurrentTorneio(int i){
+        TrabalhoFinal.currentTorneio = TrabalhoFinal.torneios.get(i);
+    }   
 }   

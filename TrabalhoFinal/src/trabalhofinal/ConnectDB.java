@@ -170,12 +170,12 @@ public class ConnectDB {
             pstmt.setString(6, torneio.getRegras());
             pstmt.setInt(7, torneio.getNumJogosPartida());
             pstmt.setInt(8, torneio.getStatusTorneio());
-            pstmt.setString(9, torneio.getDataInicio());
      
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-    }
+    }    
+
     /** 
      * @param args the command line arguments 
      */  
