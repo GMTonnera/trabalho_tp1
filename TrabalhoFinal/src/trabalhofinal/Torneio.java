@@ -3,7 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package trabalhofinal;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.ArrayList;
 
 
@@ -14,14 +15,14 @@ import java.util.ArrayList;
 public class Torneio {
     protected int id, minParticipantes, maxParticipantes, statusTorneio, numJogosPartida, periodoInscricao, periodoTorneio;
     protected String nome, descricao, local, regras;
-    protected LocalDateTime dataInicio, dataInicioInscricao; 
+    protected LocalDate dataInicio, dataInicioInscricao; 
     protected ArrayList<Participante> participantes;
     protected Organizador organizador;
     protected ArrayList<Partida> partidas; 
             
     Torneio(){}
     
-    Torneio(String nome, String descricao, String local, LocalDateTime dataInicio, LocalDateTime dataInicioInscricao,int periodoTorneio, int periodoInscricao, 
+    Torneio(String nome, String descricao, String local, LocalDate dataInicio, LocalDate dataInicioInscricao,int periodoTorneio, int periodoInscricao, 
             String regras, int id, int minParticipantes, int maxParticipantes, int numJogosPartida, Organizador organizador){
         
         this.id = id;
@@ -106,11 +107,11 @@ public class Torneio {
         this.regras = regras;
     }
     
-    public LocalDateTime getDataInicio(){
+    public LocalDate getDataInicio(){
         return this.dataInicio;
     }
     
-    public void setDataInicio(LocalDateTime dataInicio){
+    public void setDataInicio(LocalDate dataInicio){
         this.dataInicio = dataInicio;
     }
 
@@ -126,7 +127,7 @@ public class Torneio {
         return periodoTorneio;
     }
 
-    public void setDataInicioInscricao(LocalDateTime dataInicioInscricao) {
+    public void setDataInicioInscricao(LocalDate dataInicioInscricao) {
         this.dataInicioInscricao = dataInicioInscricao;
     }
 
@@ -143,12 +144,9 @@ public class Torneio {
         this.periodoTorneio = periodoTorneio;
     }
 
-    public LocalDateTime getDataInicioInscricao() {
+    public LocalDate getDataInicioInscricao() {
         return dataInicioInscricao;
     }
-
-
-
     
     public ArrayList<Partida> getPartidas(){
         return this.partidas;
@@ -176,5 +174,13 @@ public class Torneio {
     
     public void addPartida(Partida partida){
         this.partidas.add(partida);
-    }   
+    }
+    
+    public LocalDate getFimInscricao(){
+        return this.dataInicioInscricao.plus(Period.ofDays(this.periodoInscricao));
+    }
+    
+    public LocalDate getFimTorneio(){
+        return this.dataInicio.plus(Period.ofDays(this.periodoTorneio));
+    }
 }

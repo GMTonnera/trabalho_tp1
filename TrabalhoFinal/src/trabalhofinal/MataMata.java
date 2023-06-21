@@ -4,7 +4,7 @@
  */
 package trabalhofinal;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 /**
@@ -18,7 +18,7 @@ public class MataMata extends Torneio implements gerenciarTorneio{
         super();
     }
     
-    MataMata(String nome, String descricao, String local, LocalDateTime dataInicio, LocalDateTime dataInicioInscricao,int periodoTorneio, int periodoInscricao, 
+    MataMata(String nome, String descricao, String local, LocalDate dataInicio, LocalDate dataInicioInscricao,int periodoTorneio, int periodoInscricao, 
             String regras, int id, int minParticipantes, int maxParticipantes, int numJogosPartida, Organizador organizador){
         
         super(nome, descricao, local, dataInicio, dataInicioInscricao, periodoTorneio, periodoInscricao, regras, id, minParticipantes, maxParticipantes, numJogosPartida, organizador);

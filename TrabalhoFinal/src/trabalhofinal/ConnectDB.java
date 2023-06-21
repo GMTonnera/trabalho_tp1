@@ -28,7 +28,7 @@ public class ConnectDB {
 
         return conn;
     }   
-
+/*
     public static CreateTables() {
         Connection conn = connect();
 
@@ -88,6 +88,7 @@ public class ConnectDB {
                             + ");";
 
     }
+*/
     /** 
      * @param args the command line arguments 
      */  
