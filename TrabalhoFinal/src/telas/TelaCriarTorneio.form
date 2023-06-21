@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+<Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
-    <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="defaultCloseOperation" type="int" value="2"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -28,21 +28,20 @@
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="lblNome" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="lblLocal" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtNumeroMaxPart" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtNumeroMinPart" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="lblNumeroMinPart" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="lblNumeroMaxPart" alignment="0" max="32767" attributes="0"/>
                   <Component id="lblInicioInscr" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="ftxtInicioInscr" alignment="0" min="-2" pref="83" max="-2" attributes="0"/>
                   <Component id="lblPeriodoInscr" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtPeriodoInscr" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="txtLocal" alignment="0" max="32767" attributes="0"/>
                   <Component id="txtNome" alignment="0" max="32767" attributes="0"/>
+                  <Component id="txtPeriodoInscr" alignment="0" min="-2" pref="88" max="-2" attributes="0"/>
+                  <Component id="txtNumeroMinPart" alignment="0" min="-2" pref="85" max="-2" attributes="0"/>
+                  <Component id="txtNumeroMaxPart" alignment="0" min="-2" pref="86" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="lblNumeroJogos" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtNumeroJogos" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="lblDescricao" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="lblTipo" min="-2" max="-2" attributes="0"/>
@@ -52,30 +51,28 @@
                   <Component id="lblInicioJogos" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="ftxtInicioJogos" alignment="0" min="-2" pref="83" max="-2" attributes="0"/>
                   <Component id="lblPeriodoJogos" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtPeriodoJogos" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="jScrollPane1" alignment="0" min="-2" pref="317" max="-2" attributes="0"/>
+                  <Component id="txtPeriodoJogos" alignment="0" min="-2" pref="89" max="-2" attributes="0"/>
+                  <Component id="txtNumeroJogos" alignment="0" min="-2" pref="84" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
           </Group>
           <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="258" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="302" max="-2" attributes="0"/>
-                      <Component id="btnCriar" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblRegra" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="cbxRegra" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="258" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="lblRegra" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="cbxRegra" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Component id="lblTitulo" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
+                  <Component id="lblTitulo" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="117" pref="334" max="32767" attributes="0"/>
+              <EmptySpace pref="334" max="32767" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="302" max="-2" attributes="0"/>
+              <Component id="btnCriar" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -163,10 +160,13 @@
     </Component>
     <Component class="javax.swing.JFormattedTextField" name="ftxtInicioJogos">
       <Properties>
-        <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
-          <Format subtype="1" type="1"/>
+        <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
+          <Format format="####-##-##" subtype="-1" type="5"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ftxtInicioJogosActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="lblPeriodoJogos">
       <Properties>
@@ -289,10 +289,13 @@
     </Component>
     <Component class="javax.swing.JFormattedTextField" name="ftxtInicioInscr">
       <Properties>
-        <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
-          <Format subtype="1" type="1"/>
+        <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
+          <Format format="####-##-##" subtype="-1" type="5"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ftxtInicioInscrActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="lblPeriodoInscr">
       <Properties>
