@@ -4,6 +4,11 @@
  */
 package telas;
 
+import javax.swing.table.DefaultTableModel;
+import trabalhofinal.Participante;
+import trabalhofinal.TrabalhoFinal;
+import java.util.ArrayList;
+
 /**
  *
  * @author Vini
@@ -15,6 +20,20 @@ public class ListaParticipantes extends javax.swing.JFrame {
      */
     public ListaParticipantes() {
         initComponents();
+        setLocationRelativeTo(null);
+        this.setup();
+    }
+    
+    public void setup(){
+        DefaultTableModel modelo = new DefaultTableModel(new Object[] {"ID", "Nome", "Curso"}, 0);
+        ArrayList<Participante> participantes = TrabalhoFinal.currentTorneio.getParticipantes();
+        for(int i = 0; i < participantes.size(); i++){
+            Object linha[] = new Object[]{participantes.get(i).getId(),
+                                          participantes.get(i).getNome(),
+                                          participantes.get(i).getCurso()};
+            modelo.addRow(linha);
+        }
+        this.jTable2.setModel(modelo);
     }
 
     /**
@@ -30,7 +49,7 @@ public class ListaParticipantes extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel1.setText("Lista de participantes");

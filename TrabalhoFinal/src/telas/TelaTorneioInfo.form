@@ -246,6 +246,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Inscrever-se"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnInscricaoActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="lblTipo">
       <Properties>
@@ -256,6 +259,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Cancelar Inscri&#xe7;&#xe3;o"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCancelaInscrActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="lblMaxPart">
       <Properties>
@@ -266,6 +272,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Editar Torneio"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEditarTorneioActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="lblMinPart">
       <Properties>

@@ -39,7 +39,7 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
-                  <EmptySpace pref="66" max="32767" attributes="0"/>
+                  <EmptySpace pref="102" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
                           <Component id="Titulo" min="-2" pref="293" max="-2" attributes="0"/>
@@ -60,7 +60,7 @@
                   <Component id="Titulo" min="-2" pref="95" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="pnlCadastro" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="18" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -87,39 +87,41 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace min="0" pref="260" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       <Component id="lblLogin" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="254" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="lblNome" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblEmail" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtEmail" alignment="0" pref="175" max="32767" attributes="0"/>
-                          <Component id="txtNome" alignment="0" max="32767" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="lblCurso" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblSenha" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtSenha" pref="175" max="32767" attributes="0"/>
-                          <Component id="txtCurso" alignment="0" max="32767" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
-                  </Group>
                   <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="284" max="-2" attributes="0"/>
+                      <Component id="btnCadastro" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <EmptySpace min="-2" pref="284" max="-2" attributes="0"/>
-                              <Component id="btnCadastro" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="lblNome" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblEmail" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtEmail" alignment="0" pref="175" max="32767" attributes="0"/>
+                                  <Component id="txtNome" alignment="0" max="32767" attributes="0"/>
+                              </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="277" max="-2" attributes="0"/>
                               <Component id="cbxTipo" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="25" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="lblCurso" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblSenha" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtCurso" alignment="0" min="-2" pref="175" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="jPasswordField1" min="-2" pref="175" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -144,13 +146,13 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="txtEmail" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtSenha" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPasswordField1" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                       <Component id="cbxTipo" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="94" max="-2" attributes="0"/>
                       <Component id="lblLogin" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
                       <Component id="btnCadastro" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
                   </Group>
@@ -172,11 +174,6 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Senha"/>
               </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="txtSenha">
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtSenhaActionPerformed"/>
-              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="lblLogin">
               <Properties>
@@ -220,6 +217,11 @@
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
               </AuxValues>
+            </Component>
+            <Component class="javax.swing.JPasswordField" name="jPasswordField1">
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jPasswordField1ActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

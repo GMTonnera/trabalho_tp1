@@ -4,6 +4,7 @@
  */
 package telas;
 
+import javax.swing.JOptionPane;
 import trabalhofinal.TrabalhoFinal;
 import trabalhofinal.Organizador;
 import trabalhofinal.MataMata;
@@ -125,14 +126,29 @@ public class TelaTorneioInfo extends javax.swing.JFrame {
         lblRegra.setText("Regra:");
 
         btnInscricao.setText("Inscrever-se");
+        btnInscricao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInscricaoActionPerformed(evt);
+            }
+        });
 
         lblTipo.setText("Tipo:");
 
         btnCancelaInscr.setText("Cancelar Inscrição");
+        btnCancelaInscr.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelaInscrActionPerformed(evt);
+            }
+        });
 
         lblMaxPart.setText("Máximo de participantes:");
 
         btnEditarTorneio.setText("Editar Torneio");
+        btnEditarTorneio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarTorneioActionPerformed(evt);
+            }
+        });
 
         lblMinPart.setText("Mínimo de participantes:");
 
@@ -287,6 +303,31 @@ public class TelaTorneioInfo extends javax.swing.JFrame {
     private void btnPontuacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPontuacaoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnPontuacaoActionPerformed
+
+    private void btnEditarTorneioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarTorneioActionPerformed
+        // TODO add your handling code here:
+        new EditarTorneio().setVisible(true);
+    }//GEN-LAST:event_btnEditarTorneioActionPerformed
+
+    private void btnInscricaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInscricaoActionPerformed
+        // TODO add your handling code here:
+        if(TrabalhoFinal.isInscrito()){
+            JOptionPane.showMessageDialog(null, "Você já está inscrito nesse torneio!", "Mensagem", JOptionPane.INFORMATION_MESSAGE);
+        } else{
+            TrabalhoFinal.inscricao();
+            JOptionPane.showMessageDialog(null, "Inscrição realizada!", "Mensagem", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }//GEN-LAST:event_btnInscricaoActionPerformed
+
+    private void btnCancelaInscrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelaInscrActionPerformed
+        // TODO add your handling code here:
+        if(TrabalhoFinal.isInscrito()){
+            JOptionPane.showMessageDialog(null, "Inscrição cancelada com sucesso!", "Mensagem", JOptionPane.INFORMATION_MESSAGE);
+            TrabalhoFinal.cancelarInscricao();
+        } else{
+            JOptionPane.showMessageDialog(null, "Você não está inscrito nesse torneio!", "Mensagem", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }//GEN-LAST:event_btnCancelaInscrActionPerformed
 
     /**
      * @param args the command line arguments

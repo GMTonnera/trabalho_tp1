@@ -5,6 +5,7 @@
 package telas;
 import trabalhofinal.TrabalhoFinal;
 import trabalhofinal.Participante;
+import trabalhofinal.Organizador;
 /**
  *
  * @author guton
@@ -38,6 +39,20 @@ public class TelaPerfil extends javax.swing.JFrame {
         lblCurso = new javax.swing.JLabel();
         lblTipo = new javax.swing.JLabel();
         pnlEstaticas = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
         lblIdU = new javax.swing.JLabel();
         lblNomeU = new javax.swing.JLabel();
         lblEmailU = new javax.swing.JLabel();
@@ -55,7 +70,7 @@ public class TelaPerfil extends javax.swing.JFrame {
 
         lblNome.setText("Nome:");
 
-        lblEmail.setText("Email");
+        lblEmail.setText("Email:");
 
         lblCurso.setText("Curso:");
 
@@ -63,15 +78,102 @@ public class TelaPerfil extends javax.swing.JFrame {
 
         pnlEstaticas.setBorder(javax.swing.BorderFactory.createTitledBorder("Estátiscas"));
 
+        jLabel1.setText("Torneios criados:");
+
+        jLabel2.setText("Torneios jogados:");
+
+        jLabel3.setText("Torneios vencidos: ");
+
+        jLabel4.setText("Vitórias:");
+
+        jLabel5.setText("Derrotas");
+
+        jLabel6.setText("Capotes recebidos:");
+
+        jLabel7.setText("Capotes aplicados:");
+
+        jLabel8.setText("jLabel8");
+
+        jLabel9.setText("jLabel9");
+
+        jLabel10.setText("jLabel10");
+
+        jLabel11.setText("jLabel11");
+
+        jLabel12.setText("jLabel12");
+
+        jLabel13.setText("jLabel13");
+
+        jLabel14.setText("jLabel14");
+
         javax.swing.GroupLayout pnlEstaticasLayout = new javax.swing.GroupLayout(pnlEstaticas);
         pnlEstaticas.setLayout(pnlEstaticasLayout);
         pnlEstaticasLayout.setHorizontalGroup(
             pnlEstaticasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 319, Short.MAX_VALUE)
+            .addGroup(pnlEstaticasLayout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addGroup(pnlEstaticasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlEstaticasLayout.createSequentialGroup()
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel14))
+                    .addGroup(pnlEstaticasLayout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel13))
+                    .addGroup(pnlEstaticasLayout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel12))
+                    .addGroup(pnlEstaticasLayout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel11))
+                    .addGroup(pnlEstaticasLayout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel10))
+                    .addGroup(pnlEstaticasLayout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel9))
+                    .addGroup(pnlEstaticasLayout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel8)))
+                .addContainerGap(129, Short.MAX_VALUE))
         );
         pnlEstaticasLayout.setVerticalGroup(
             pnlEstaticasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 309, Short.MAX_VALUE)
+            .addGroup(pnlEstaticasLayout.createSequentialGroup()
+                .addGroup(pnlEstaticasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel8))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnlEstaticasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel9))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnlEstaticasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel10))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnlEstaticasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel13))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnlEstaticasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel14))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnlEstaticasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel11))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnlEstaticasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel12))
+                .addGap(0, 41, Short.MAX_VALUE))
         );
 
         lblIdU.setText("123");
@@ -85,63 +187,66 @@ public class TelaPerfil extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(334, 334, 334)
-                .addComponent(lblTitulo)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(59, 59, 59)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblCurso)
-                            .addComponent(lblTipo))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblTipoU)
-                            .addComponent(lblCursoU)))
+                        .addGap(334, 334, 334)
+                        .addComponent(lblTitulo))
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(65, 65, 65)
+                        .addComponent(pnlEstaticas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(35, 35, 35)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblNome)
-                            .addComponent(lblEmail)
-                            .addComponent(lblId))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblIdU)
-                            .addComponent(lblEmailU)
-                            .addComponent(lblNomeU))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 92, Short.MAX_VALUE)
-                .addComponent(pnlEstaticas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(57, 57, 57))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblCurso)
+                                    .addComponent(lblTipo))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblTipoU)
+                                    .addComponent(lblCursoU)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblNome)
+                                    .addComponent(lblEmail)
+                                    .addComponent(lblId))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblIdU)
+                                    .addComponent(lblEmailU)
+                                    .addComponent(lblNomeU))))))
+                .addContainerGap(132, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addComponent(lblTitulo)
-                .addGap(56, 56, 56)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(77, 77, 77)
+                        .addComponent(pnlEstaticas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(93, 93, 93)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblId)
                             .addComponent(lblIdU))
-                        .addGap(30, 30, 30)
+                        .addGap(15, 15, 15)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblNome)
                             .addComponent(lblNomeU))
-                        .addGap(32, 32, 32)
+                        .addGap(15, 15, 15)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblEmail)
                             .addComponent(lblEmailU))
-                        .addGap(42, 42, 42)
+                        .addGap(15, 15, 15)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblCurso)
                             .addComponent(lblCursoU))
-                        .addGap(44, 44, 44)
+                        .addGap(15, 15, 15)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblTipo)
-                            .addComponent(lblTipoU)))
-                    .addComponent(pnlEstaticas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(52, Short.MAX_VALUE))
+                            .addComponent(lblTipoU))))
+                .addContainerGap(151, Short.MAX_VALUE))
         );
 
         pack();
@@ -158,8 +263,25 @@ public class TelaPerfil extends javax.swing.JFrame {
         this.lblNomeU.setText(TrabalhoFinal.login.getNome());
         if(TrabalhoFinal.login instanceof Participante){
             this.lblTipoU.setText("Jogador");
+            this.jLabel9.setText(String.format("%d",((Participante) TrabalhoFinal.login).getNumTorneiosJogados()));
+            this.jLabel10.setText(String.format("%d",((Participante) TrabalhoFinal.login).getNumTorneiosVencidos()));
+            this.jLabel11.setText(String.format("%d",((Participante) TrabalhoFinal.login).getCapotesRecebidos()));
+            this.jLabel12.setText(String.format("%d",((Participante) TrabalhoFinal.login).getCapotesRecebidos()));
+            this.jLabel13.setText(String.format("%d",((Participante) TrabalhoFinal.login).getNumVitorias()));
+            this.jLabel14.setText(String.format("%d",((Participante) TrabalhoFinal.login).getNumDerrotas()));
+            this.jLabel8.setText("0");
+            
+            
         } else{
             this.lblTipoU.setText("Organizador");
+            this.jLabel9.setText("0");
+            this.jLabel10.setText("0");
+            this.jLabel11.setText("0");
+            this.jLabel12.setText("0");
+            this.jLabel13.setText("0");
+            this.jLabel14.setText("0");
+            this.jLabel8.setText(String.format("%d",((Organizador) TrabalhoFinal.login).getNumTorneiosCriados()));
+            
         }
         
     }
@@ -197,6 +319,20 @@ public class TelaPerfil extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel lblCurso;
     private javax.swing.JLabel lblCursoU;
     private javax.swing.JLabel lblEmail;

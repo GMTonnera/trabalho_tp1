@@ -36,7 +36,6 @@ public class Cadastro extends javax.swing.JFrame {
         txtEmail = new javax.swing.JTextField();
         lblEmail = new javax.swing.JLabel();
         lblSenha = new javax.swing.JLabel();
-        txtSenha = new javax.swing.JTextField();
         lblLogin = new javax.swing.JLabel();
         btnCadastro = new javax.swing.JButton();
         lblNome = new javax.swing.JLabel();
@@ -44,6 +43,7 @@ public class Cadastro extends javax.swing.JFrame {
         lblCurso = new javax.swing.JLabel();
         txtCurso = new javax.swing.JTextField();
         cbxTipo = new javax.swing.JComboBox<>();
+        jPasswordField1 = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -61,12 +61,6 @@ public class Cadastro extends javax.swing.JFrame {
         lblEmail.setText("Email");
 
         lblSenha.setText("Senha");
-
-        txtSenha.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtSenhaActionPerformed(evt);
-            }
-        });
 
         lblLogin.setText("já tem conta? clique aqui");
         lblLogin.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -88,37 +82,44 @@ public class Cadastro extends javax.swing.JFrame {
 
         cbxTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "jogador", "organizador" }));
 
+        jPasswordField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jPasswordField1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnlCadastroLayout = new javax.swing.GroupLayout(pnlCadastro);
         pnlCadastro.setLayout(pnlCadastroLayout);
         pnlCadastroLayout.setHorizontalGroup(
             pnlCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlCadastroLayout.createSequentialGroup()
-                .addGap(0, 260, Short.MAX_VALUE)
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(lblLogin)
                 .addGap(254, 254, 254))
             .addGroup(pnlCadastroLayout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addGroup(pnlCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lblNome)
-                    .addComponent(lblEmail)
-                    .addComponent(txtEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)
-                    .addComponent(txtNome))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(pnlCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lblCurso)
-                    .addComponent(lblSenha)
-                    .addComponent(txtSenha, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)
-                    .addComponent(txtCurso))
-                .addGap(36, 36, 36))
-            .addGroup(pnlCadastroLayout.createSequentialGroup()
+                .addGap(284, 284, 284)
+                .addComponent(btnCadastro)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlCadastroLayout.createSequentialGroup()
                 .addGroup(pnlCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlCadastroLayout.createSequentialGroup()
-                        .addGap(284, 284, 284)
-                        .addComponent(btnCadastro))
+                        .addGap(40, 40, 40)
+                        .addGroup(pnlCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(lblNome)
+                            .addComponent(lblEmail)
+                            .addComponent(txtEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)
+                            .addComponent(txtNome)))
                     .addGroup(pnlCadastroLayout.createSequentialGroup()
                         .addGap(277, 277, 277)
                         .addComponent(cbxTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                .addGroup(pnlCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(lblCurso)
+                        .addComponent(lblSenha)
+                        .addComponent(txtCurso, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(36, 36, 36))
         );
         pnlCadastroLayout.setVerticalGroup(
             pnlCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -138,12 +139,12 @@ public class Cadastro extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(32, 32, 32)
                 .addComponent(cbxTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(94, 94, 94)
                 .addComponent(lblLogin)
-                .addGap(18, 18, 18)
+                .addGap(57, 57, 57)
                 .addComponent(btnCadastro)
                 .addGap(39, 39, 39))
         );
@@ -153,7 +154,7 @@ public class Cadastro extends javax.swing.JFrame {
         TelaLayout.setHorizontalGroup(
             TelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(TelaLayout.createSequentialGroup()
-                .addContainerGap(66, Short.MAX_VALUE)
+                .addContainerGap(102, Short.MAX_VALUE)
                 .addGroup(TelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, TelaLayout.createSequentialGroup()
                         .addComponent(Titulo, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -169,7 +170,7 @@ public class Cadastro extends javax.swing.JFrame {
                 .addComponent(Titulo, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pnlCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -190,24 +191,18 @@ public class Cadastro extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtEmailActionPerformed
 
-    private void txtSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSenhaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtSenhaActionPerformed
-
     private void btnCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastroActionPerformed
-        // TODO add your handling code here:
-        if(this.txtCurso.getText().equals("") || this.txtEmail.getText().equals("") || this.txtNome.getText().equals("") ||this.txtSenha.getText().equals("")){
+        // TODO add your handling code here:        
+        if(this.txtCurso.getText().equals("") || this.txtEmail.getText().equals("") || this.txtNome.getText().equals("") || String.valueOf(this.jPasswordField1.getPassword()).equals("")){
             JOptionPane.showMessageDialog(null, "Por favor, preencha todos os campos!", "Mensagem", JOptionPane.INFORMATION_MESSAGE);
         } else{
             // Criar Usuário
-            TrabalhoFinal.createUsuario(txtNome.getText(), txtCurso.getText(), txtEmail.getText(), txtSenha.getText(), cbxTipo.getSelectedIndex());
+            TrabalhoFinal.createUsuario(txtNome.getText(), txtCurso.getText(), txtEmail.getText(), String.valueOf(this.jPasswordField1.getPassword()), cbxTipo.getSelectedIndex());
             
-            
-            System.out.println("Usuário criado!");
             this.txtCurso.setText("");
             this.txtNome.setText("");
             this.txtEmail.setText("");
-            this.txtSenha.setText("");
+            this.jPasswordField1.setText("");
             JOptionPane.showMessageDialog(null, "Usuário criado!", "Mensagem", JOptionPane.INFORMATION_MESSAGE);
             
         }
@@ -219,6 +214,10 @@ public class Cadastro extends javax.swing.JFrame {
         new Login().setVisible(true);
         
     }//GEN-LAST:event_lblLoginMouseClicked
+
+    private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPasswordField1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -260,6 +259,7 @@ public class Cadastro extends javax.swing.JFrame {
     private javax.swing.JLabel Titulo;
     private javax.swing.JButton btnCadastro;
     private javax.swing.JComboBox<String> cbxTipo;
+    private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JLabel lblCurso;
     private javax.swing.JLabel lblEmail;
     private javax.swing.JLabel lblLogin;
@@ -269,6 +269,5 @@ public class Cadastro extends javax.swing.JFrame {
     private javax.swing.JTextField txtCurso;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtNome;
-    private javax.swing.JTextField txtSenha;
     // End of variables declaration//GEN-END:variables
 }

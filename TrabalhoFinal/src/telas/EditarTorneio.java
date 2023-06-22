@@ -15,6 +15,7 @@ public class EditarTorneio extends javax.swing.JFrame {
      */
     public EditarTorneio() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -38,7 +39,7 @@ public class EditarTorneio extends javax.swing.JFrame {
         ckxCapote = new javax.swing.JCheckBox();
         btnEncerrar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         lblTitulo.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         lblTitulo.setText("Editar Torneio");
@@ -82,12 +83,12 @@ public class EditarTorneio extends javax.swing.JFrame {
                                 .addComponent(lblNumeroJogo)
                                 .addGap(12, 12, 12)
                                 .addComponent(lblNumeroJogoNum)
-                                .addGap(64, 64, 64)
-                                .addComponent(txtPontosJogador1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(52, 52, 52)
+                                .addComponent(txtPontosJogador1, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(lblx)
                                 .addGap(18, 18, 18)
-                                .addComponent(txtPontosJogador2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(txtPontosJogador2, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(366, 366, 366)
                         .addComponent(btnAdicionarResultado))

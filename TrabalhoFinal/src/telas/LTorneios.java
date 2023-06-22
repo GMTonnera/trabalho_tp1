@@ -131,7 +131,7 @@ public class LTorneios extends javax.swing.JFrame {
     private void tblTorneiosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblTorneiosMouseClicked
         // TODO add your handling code here:
         int i = this.tblTorneios.getSelectedRow();
-        System.out.print(i);
+
         if(i >= 0 && i < TrabalhoFinal.torneios.size()){
             TrabalhoFinal.setCurrentTorneio(i);
             new TelaTorneioInfo().setVisible(true);
