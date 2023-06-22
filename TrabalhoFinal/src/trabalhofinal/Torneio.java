@@ -176,11 +176,24 @@ public class Torneio {
         this.partidas.add(partida);
     }
     
+    public void addParticipante(Participante p){
+        this.participantes.add(p);
+    }
+    
     public LocalDate getFimInscricao(){
         return this.dataInicioInscricao.plus(Period.ofDays(this.periodoInscricao));
     }
     
     public LocalDate getFimTorneio(){
         return this.dataInicio.plus(Period.ofDays(this.periodoTorneio));
+    }
+    
+    public void removeParticipante(int id){
+        for(int i = 0; i < this.participantes.size(); i++){
+            if(this.participantes.get(i).getId() == id){
+                this.participantes.remove(i);
+                break;
+            }
+        }
     }
 }

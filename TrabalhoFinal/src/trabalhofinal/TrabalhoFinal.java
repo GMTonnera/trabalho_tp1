@@ -6,6 +6,7 @@ package trabalhofinal;
 import java.time.LocalDate;
 import telas.Login;
 import java.util.ArrayList;
+import trabalhofinal.Organizador;
 /**
  *
  * @author guton
@@ -29,6 +30,22 @@ public class TrabalhoFinal {
         // TODO code application logic here
         TrabalhoFinal.usuarios.add(new Participante(0, "Gustavo", "CiC", "gustavo", "1234"));
         TrabalhoFinal.usuarios.add(new Organizador(1, "Gustavo", "CiC", "gustavo2", "1234"));
+        TrabalhoFinal.torneios.add(new MataMata("Mata-mata Teste",
+                                                "Torneio do tipo mata-mata de teste",
+                                                "Cacomp",
+                                                LocalDate.parse("2002-11-13"),
+                                                LocalDate.parse("2002-10-13"),
+                                                10,
+                                                10,
+                                                "Sinuquinha",
+                                                0,
+                                                5,
+                                                10, 
+                                                1,
+                                                (Organizador) TrabalhoFinal.usuarios.get(1)));
+        
+        TrabalhoFinal.currentUserId = 2;
+        TrabalhoFinal.currentTornamentId = 1;
         new Login().setVisible(true);
     }
     
@@ -81,5 +98,22 @@ public class TrabalhoFinal {
     
     public static void setCurrentTorneio(int i){
         TrabalhoFinal.currentTorneio = TrabalhoFinal.torneios.get(i);
-    }   
+    }
+    
+    public static void inscricao(){
+        TrabalhoFinal.currentTorneio.addParticipante((Participante) TrabalhoFinal.login);
+    }
+    
+    public static boolean isInscrito(){
+        for(Participante p : TrabalhoFinal.currentTorneio.getParticipantes()){
+            if(p.getId() == TrabalhoFinal.login.getId()){
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    public static void cancelarInscricao(){
+        TrabalhoFinal.currentTorneio.removeParticipante(TrabalhoFinal.login.getId());
+    }
 }   
