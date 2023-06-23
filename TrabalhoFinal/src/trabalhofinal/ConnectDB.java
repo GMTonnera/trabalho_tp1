@@ -15,9 +15,9 @@ import java.sql.*;
 public class ConnectDB {
      public static Connection connect() {  
         Connection conn = null;  
-        // db parameters  
-        String url = "jdbc:sqlite:" + System.getProperty("user.dir") + "/sinuqueiro.db";  
-
+        // db parameters 
+        String url = "jdbc:sqlite:" + System.getProperty("user.dir") + "\\src\\db\\sinuqueiro.db";  
+        System.out.println(url);
         try {
             // create a connection to the database
             Class.forName("org.sqlite.JDBC");
@@ -29,7 +29,7 @@ public class ConnectDB {
         return conn;
     }   
 
-    public void dropTables() {
+    public static void dropTables() {
       Connection conn = connect();
 
       String dropCriarTorneio = "DROP TABLE criarTorneio";
@@ -61,7 +61,7 @@ public class ConnectDB {
       }
     }
 
-    public void createTables() {
+    public static void createTables() {
         Connection conn = connect();
 
         String ParticipanteTable = "CREATE TABLE IF NOT EXISTS participante (\n"
@@ -774,7 +774,7 @@ public class ConnectDB {
       }
     }
 
-    public void resetDB() {
+    public static void resetDB() {
       dropTables();
       createTables();
     }
@@ -784,7 +784,7 @@ public class ConnectDB {
      * @param args the command line arguments 
      */  
     public static void main(String[] args) throws ClassNotFoundException {        
-      // resetDB();
+        resetDB();
       // Torneio torn = findTorneio(1);
       //
       // System.out.println(torn.getNome());

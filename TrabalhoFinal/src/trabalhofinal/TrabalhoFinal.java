@@ -34,10 +34,10 @@ public class TrabalhoFinal {
         // TODO code application logic here
         
         adicionarUsuarios(100, 10);
-        criarTorneios(10, 10);
-        inscreverParticipantes();
-        Liga teste = (Liga) TrabalhoFinal.torneios.get(10);
-        teste.criarPartidas();
+        // criarTorneios(10, 10);
+        // inscreverParticipantes();
+        // Liga teste = (Liga) TrabalhoFinal.torneios.get(10);
+        // teste.criarPartidas();
         // new Login().setVisible(true);
     }
     
@@ -45,10 +45,12 @@ public class TrabalhoFinal {
     public static void createUsuario(String nome, String curso, String email, String senha, int tipo){
         if(tipo == 0){
             // Criar um Participante
-            TrabalhoFinal.usuarios.add(new Participante(TrabalhoFinal.currentUserId, nome, curso, email, senha));
+            ParticipanteService ps = new ParticipanteService();
+            ps.createParticipante(new Participante(TrabalhoFinal.currentUserId, nome, curso, email, senha));
         } else{
             // Criar um Organizador
-            TrabalhoFinal.usuarios.add(new Organizador(TrabalhoFinal.currentUserId, nome, curso, email, senha));
+            OrganizadorService os = new OrganizadorService();
+            os.createOrganizador(new Organizador(TrabalhoFinal.currentUserId, nome, curso, email, senha));
         }
         
         TrabalhoFinal.currentUserId += 1;
@@ -80,10 +82,14 @@ public class TrabalhoFinal {
     
     public static void criarTorneio(String nome, String descricao, String local, LocalDate dataInicio, LocalDate dataInicioInscricao,int periodoTorneio, int periodoInscricao, 
                                     String regras, Organizador organizador, int tipo){
+        
+        TorneioService ts = new TorneioService();
+        
         if(tipo == 0){
-            TrabalhoFinal.torneios.add(new MataMata(nome, descricao, local, dataInicio, dataInicioInscricao, periodoTorneio, periodoInscricao, regras, TrabalhoFinal.currentTornamentId, organizador));
+            ts.createTorneio(new MataMata(nome, descricao, local, dataInicio, dataInicioInscricao, periodoTorneio, periodoInscricao, regras, TrabalhoFinal.currentTornamentId, organizador), organizador.getId());
+            
         } else{
-            TrabalhoFinal.torneios.add(new Liga(nome, descricao, local, dataInicio, dataInicioInscricao, periodoTorneio, periodoInscricao, regras, TrabalhoFinal.currentTornamentId, organizador));
+            ts.createTorneio(new Liga(nome, descricao, local, dataInicio, dataInicioInscricao, periodoTorneio, periodoInscricao, regras, TrabalhoFinal.currentTornamentId, organizador), organizador.getId());
         }
         TrabalhoFinal.currentTornamentId += 1;
     }
