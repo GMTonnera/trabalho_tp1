@@ -14,6 +14,8 @@ public class OrganizadorService {
   ConnectDB connect = new ConnectDB();
 
   public void createOrganizador(Organizador organizador) {
+      System.out.println(organizador.getNome());  
+      
     this.connect.createOrganizador(organizador);
   }   
 

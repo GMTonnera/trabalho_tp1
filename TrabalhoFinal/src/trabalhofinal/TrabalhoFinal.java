@@ -34,7 +34,7 @@ public class TrabalhoFinal {
         // TODO code application logic here
         
         adicionarUsuarios(100, 10);
-        // criarTorneios(10, 10);
+        criarTorneios(10, 10);
         // inscreverParticipantes();
         // Liga teste = (Liga) TrabalhoFinal.torneios.get(10);
         // teste.criarPartidas();
@@ -122,6 +122,10 @@ public class TrabalhoFinal {
                                             "Ciência da Computação",
                                             String.format("gustavo%d@gmail.com", i),
                                             String.format("senha%d", i));
+            
+            ParticipanteService ps = new ParticipanteService();
+            ps.createParticipante(p);
+            
             TrabalhoFinal.usuarios.add(p);
             TrabalhoFinal.participantes.add(p);
         }
@@ -132,6 +136,9 @@ public class TrabalhoFinal {
                                        "Ciência da Computação",
                                        String.format("vinicius%d@gmail.com", i),
                                        String.format("password%d", i));
+            OrganizadorService os = new OrganizadorService();
+            os.createOrganizador(o);
+            
             TrabalhoFinal.usuarios.add(o);
             TrabalhoFinal.organizadores.add(o);
         }

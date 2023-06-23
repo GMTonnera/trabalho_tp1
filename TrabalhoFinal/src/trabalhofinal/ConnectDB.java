@@ -70,6 +70,7 @@ public class ConnectDB {
                                  + "    curso text NOT NULL,\n"
                                  + "    email text UNIQUE NOT NULL,\n"
                                  + "    senha text NOT NULL,\n"
+                                 + "    numVitorias integer NOT NULL,\n"
                                  + "    numDerrotas integer,\n"
                                  + "    capotesRecebidos integer,\n"
                                  + "    capotesAplicados integer,\n"
@@ -559,7 +560,7 @@ public class ConnectDB {
         Connection conn = connect();
         
         String sql = "INSERT INTO criarTorneio("
-                   + "organizador,"
+                   + "organizador_id,"
                    + "torneio_id"
                    + ") VALUES(?,?)";
         
@@ -784,7 +785,7 @@ public class ConnectDB {
      * @param args the command line arguments 
      */  
     public static void main(String[] args) throws ClassNotFoundException {        
-        resetDB();
+      //resetDB();
       // Torneio torn = findTorneio(1);
       //
       // System.out.println(torn.getNome());
