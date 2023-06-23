@@ -37,6 +37,10 @@ public class TorneioService {
     return this.db.findAllTorneioParticipante(torneio_id);
   }
 
+  public ArrayList<Partida> findAllTorneioPartida(int torneio_id) {
+    return this.db.findAllTorneioPartidas(torneio_id);
+  }
+
   public void inscreverParticipante(int participante_id, int torneio_id) {
     this.db.inscreverParticipante(torneio_id, participante_id);
   }

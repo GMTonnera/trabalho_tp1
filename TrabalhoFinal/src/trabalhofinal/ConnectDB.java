@@ -89,6 +89,9 @@ public class ConnectDB {
         + "    torneio_id INTEGER NOT NULL,\n"
         + "    primeiroJogador_id INTEGER NOT NULL,\n"
         + "    segundoJogador_id  INTEGER NOT NULL,\n"
+        + "    primeiroJogadorPontuacao intege DEFAULT 0,\n"
+        + "    segundoJogadorPontuacao integer DEFAULT 0,\n"
+        + "    capote integer DEFAULT 0,\n"
         + "    FOREIGN KEY (torneio_id)\n"
         + "        REFERENCES torneio (id)\n"
         + "           ON DELETE CASCADE\n"
@@ -404,6 +407,32 @@ public class ConnectDB {
     return res;
   }
 
+  public ArrayList<Partida> findAllTorneioPartidas(int torneio_id) {
+    Connection conn = connect();
+
+    ArrayList<Partida> res = new ArrayList<>();
+
+    String sql = "SELECT * FROM partida WHERE torneio_id = ?";
+
+    try {
+      PreparedStatement pstmt = conn.prepareStatement(sql);
+      pstmt.setInt(1, torneio_id);
+
+      ResultSet rs = pstmt.executeQuery();
+
+      while (rs.next()) {
+        Partida partida = findPartida(rs.getInt("id"));
+
+        res.add(partida);
+      }
+    } catch (SQLException e) {
+      System.out.println(e.getMessage());
+    }
+
+    return res;
+  }
+
+
   public void inscreverParticipante(int torneio_id, int participante_id) {
     Connection conn = connect();
 
@@ -436,7 +465,9 @@ public class ConnectDB {
 
       pstmt.setInt(1, id);
 
-      pstmt.executeQuery();
+      pstmt.executeUpdate();
+
+      conn.close();
     } catch (SQLException e) {
       System.out.println(e.getMessage());
     }
@@ -533,7 +564,7 @@ public class ConnectDB {
     return res;
   }
 
-  public void DeleteOrganizador(int id) {
+  public void deleteOrganizador(int id) {
     Connection conn = connect();
 
     String sql = "DELETE FROM TABLE organizador WHERE id = ?";
@@ -542,7 +573,7 @@ public class ConnectDB {
       PreparedStatement pstmt = conn.prepareStatement(sql);
       pstmt.setInt(1, id);
 
-      pstmt.executeQuery();
+      pstmt.executeUpdate();
 
       conn.close();
     } catch (SQLException e) {
@@ -669,7 +700,7 @@ public class ConnectDB {
       PreparedStatement pstmt = conn.prepareStatement(sql);
       pstmt.setInt(1, id);
 
-      pstmt.executeQuery();
+      pstmt.executeUpdate();
 
       conn.close();
     } catch (SQLException e) {
@@ -677,10 +708,7 @@ public class ConnectDB {
     }
   }
 
-  public void createPartida(Partida partida,
-      int torneio_id,
-      int primeioJogador_id,
-      int segundoJogador_id) {
+  public void createPartida(Partida partida, int torneio_id) {
     Connection conn = connect();
 
     String sql = "INSERT INTO partida("
@@ -694,8 +722,8 @@ public class ConnectDB {
       PreparedStatement pstmt = conn.prepareStatement(sql);
       pstmt.setInt(1, partida.getId());
       pstmt.setInt(2, torneio_id);
-      pstmt.setInt(3, primeioJogador_id);
-      pstmt.setInt(4, segundoJogador_id);
+      pstmt.setInt(3, partida.getP1().getId());
+      pstmt.setInt(4, partida.getP2().getId());
 
       pstmt.executeUpdate();
 
@@ -719,6 +747,23 @@ public class ConnectDB {
       ResultSet rs = pstmt.executeQuery();
 
       partida.setId(rs.getInt("id"));
+
+      Participante p1 = findParticipante(rs.getInt("primeiroJogador_id"));
+      Participante p2 = findParticipante(rs.getInt("segundoJogador_id"));
+
+      partida.setP1(p1);
+      partida.setP2(p2);
+
+      partida.setCapote(rs.getInt("capote") == 1 ? true : false);
+
+      ArrayList<Integer> Resultado = new ArrayList<>();
+
+      Resultado.add(rs.getInt("primeiroJogadorPontuacao"));
+      Resultado.add(rs.getInt("segundoJogadorPontuacao"));
+
+      partida.setResultado(Resultado);
+      
+      conn.close(); 
     } catch (SQLException e) {
       System.out.println(e.getMessage());
     }
@@ -726,24 +771,36 @@ public class ConnectDB {
     return partida;
   }
 
-  public void createResultado(int[] pontuacao, int partidaId, int ordem, boolean capote) {
+  public void updatePartidaResultado(int id_partida, int p1pontos, int p2pontos, boolean capote) {
     Connection conn = connect();
 
-    String sql = "INSERT INTO partida("
-        + "partidaId,"
-        + "pontuacaoJogador1,"
-        + "pontuacaoJogador2,"
-        + "ordem,"
-        + "capote"
-        + ") VALUES(?,?,?,?,?)";
+    String sql = "UPDATE partida SET primeiroJogadorPontuacao = ?, segundoJogadorPontuacao = ?, capote = ? WHERE id = ?";
+    
+   try {
+     PreparedStatement pstmt = conn.prepareStatement(sql);
+
+     pstmt.setInt(1, p1pontos);
+     pstmt.setInt(2, p2pontos);
+     pstmt.setInt(3, capote ? 1 : 0);
+     pstmt.setInt(4, id_partida);
+
+     pstmt.executeUpdate();
+
+     conn.close();
+   } catch(SQLException e) {
+     System.out.println(e.getMessage());
+   }
+  }
+
+  public void deletePartida(int id) {
+    Connection conn = connect();
+
+    String sql = "DELETE FROM TABLE partida WHERE id = ?";
 
     try {
       PreparedStatement pstmt = conn.prepareStatement(sql);
-      pstmt.setInt(1, partidaId);
-      pstmt.setInt(2, pontuacao[0]);
-      pstmt.setInt(3, pontuacao[1]);
-      pstmt.setInt(4, ordem);
-      pstmt.setInt(5, capote ? 1 : 0);
+
+      pstmt.setInt(1, id);
 
       pstmt.executeUpdate();
 
@@ -751,6 +808,8 @@ public class ConnectDB {
     } catch (SQLException e) {
       System.out.println(e.getMessage());
     }
+    
+  
   }
 
   public void inscreverEmTorneio(int participante_id, int torneio_id) {
