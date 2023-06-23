@@ -16,7 +16,7 @@ public class ConnectDB {
      public static Connection connect() {  
         Connection conn = null;  
         // db parameters  
-        String url = "jdbc:sqlite:C:\\trabalho\\TrabalhoFinal\\src\\db\\sinuqueiro.db";  
+        String url = "jdbc:sqlite:" + System.getProperty("user.dir") + "/sinuqueiro.db";  
 
         try {
             // create a connection to the database
@@ -29,7 +29,7 @@ public class ConnectDB {
         return conn;
     }   
 
-    public static void dropTables() {
+    public void dropTables() {
       Connection conn = connect();
 
       String dropCriarTorneio = "DROP TABLE criarTorneio";
@@ -61,7 +61,7 @@ public class ConnectDB {
       }
     }
 
-    public static void createTables() {
+    public void createTables() {
         Connection conn = connect();
 
         String ParticipanteTable = "CREATE TABLE IF NOT EXISTS participante (\n"
@@ -88,7 +88,6 @@ public class ConnectDB {
 
         String PartidaTable = "CREATE TABLE IF NOT EXISTS partida (\n"
                             + "    id integer PRIMARY KEY,\n"
-                            + "    numjogos integer NOT NULL,\n"
                             + "    torneio_id INTEGER NOT NULL,\n"
                             + "    primeiroJogador_id INTEGER NOT NULL,\n"
                             + "    segundoJogador_id  INTEGER NOT NULL,\n"
@@ -181,7 +180,7 @@ public class ConnectDB {
     }
     
 
-    public static void insertTorneio(Torneio torneio) {
+    public void insertTorneio(Torneio torneio) {
         Connection conn = connect();
 
         
@@ -229,7 +228,7 @@ public class ConnectDB {
         }
     }    
 
-    public static void createOrganizador(Organizador organizador) {
+    public void createOrganizador(Organizador organizador) {
         Connection conn = connect();
         
         String sql = "INSERT INTO organizador("
@@ -258,7 +257,7 @@ public class ConnectDB {
         }
     }    
 
-    public static Organizador findOrganizador(int id) {
+    public Organizador findOrganizador(int id) {
       Connection conn = connect();
 
       Organizador organizador = new Organizador();
@@ -285,7 +284,7 @@ public class ConnectDB {
       return organizador;
     }
 
-    public static ArrayList<Organizador> findAllOrganizador() {
+    public ArrayList<Organizador> findAllOrganizador() {
       Connection conn = connect();
 
       ArrayList<Organizador> res = new ArrayList<>();
@@ -315,7 +314,7 @@ public class ConnectDB {
       return res;
     }
 
-    public static void DeleteOrganizador(int id) {
+    public void DeleteOrganizador(int id) {
       Connection conn = connect();
 
       String sql = "DELETE FROM TABLE organizador WHERE id = ?";
@@ -332,7 +331,7 @@ public class ConnectDB {
       }
     }
 
-    public static void createParticipante(Participante participante) {
+    public void createParticipante(Participante participante) {
         Connection conn = connect();
         
         String sql = "INSERT INTO participante("
@@ -371,7 +370,7 @@ public class ConnectDB {
         }
     }    
 
-    public static Participante findParticipante(int id) {
+    public Participante findParticipante(int id) {
       Connection conn = connect();
 
       Participante participante = new Participante();
@@ -404,7 +403,7 @@ public class ConnectDB {
       return participante;
     }
 
-    public static ArrayList<Participante> findAllParticipante() {
+    public ArrayList<Participante> findAllParticipante() {
       Connection conn = connect();
 
       ArrayList<Participante> res = new ArrayList<>();
@@ -442,7 +441,7 @@ public class ConnectDB {
       return res;
     }
 
-    public static void deleteParticipante(int id) {
+    public void deleteParticipante(int id) {
       Connection conn = connect();
 
       String sql = "DELETE FROM TABLE participante WHERE id = ?";
@@ -459,7 +458,7 @@ public class ConnectDB {
       }
     }
 
-    public static void createPartida(Partida partida, 
+    public void createPartida(Partida partida, 
                                     int torneio_id, 
                                     int primeioJogador_id, 
                                     int segundoJogador_id) {
@@ -467,7 +466,6 @@ public class ConnectDB {
         
         String sql = "INSERT INTO partida("
                    + "id,"
-                   + "numJogos,"
                    + "torneio_id,"
                    + "primeiroJogador_id,"
                    + "segundoJogador_id,"
@@ -476,10 +474,9 @@ public class ConnectDB {
         try {
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1, partida.getId());
-            pstmt.setInt(2, partida.getNumJogos());
-            pstmt.setInt(3, torneio_id);
-            pstmt.setInt(4, primeioJogador_id);
-            pstmt.setInt(5, segundoJogador_id);
+            pstmt.setInt(2, torneio_id);
+            pstmt.setInt(3, primeioJogador_id);
+            pstmt.setInt(4, segundoJogador_id);
 
             pstmt.executeUpdate();
 
@@ -489,7 +486,28 @@ public class ConnectDB {
         }
     }    
 
-    public static void createResultado(int[] pontuacao, int partidaId, int ordem, boolean capote) {
+    public Partida findPartida(int id) {
+      Connection conn = connect();
+
+      Partida partida = new Partida();
+
+      String sql = "SELECT * FROM partida WHERE id = ?";
+
+      try {
+        PreparedStatement pstmt = conn.prepareStatement(sql);
+        pstmt.setInt(1, id);
+
+        ResultSet rs = pstmt.executeQuery();
+
+        partida.setId(rs.getInt("id"));
+      } catch(SQLException e) {
+        System.out.println(e.getMessage());
+      }
+
+      return partida;
+    }
+
+    public void createResultado(int[] pontuacao, int partidaId, int ordem, boolean capote) {
         Connection conn = connect();
         
         String sql = "INSERT INTO partida("
@@ -516,7 +534,7 @@ public class ConnectDB {
         }
     }
 
-    public static void inscreverEmTorneio(int participante_id, int torneio_id) {
+    public void inscreverEmTorneio(int participante_id, int torneio_id) {
         Connection conn = connect();
         
         String sql = "INSERT INTO inscricao("
@@ -537,7 +555,7 @@ public class ConnectDB {
         }
     }
 
-    public static void criarTorneio(int organizador_id, int torneio_id) {
+    public void criarTorneio(int organizador_id, int torneio_id) {
         Connection conn = connect();
         
         String sql = "INSERT INTO criarTorneio("
@@ -558,7 +576,7 @@ public class ConnectDB {
         }
     }
 
-    public static Torneio findTorneio(int id) {
+    public Torneio findTorneio(int id) {
       Connection conn = connect();
 
       String sql = "SELECT * FROM torneio WHERE id = ?";
@@ -624,7 +642,7 @@ public class ConnectDB {
       return torneio;
     }
 
-    public static ArrayList<Torneio> findAllTorneio() {
+    public ArrayList<Torneio> findAllTorneio() {
       Connection conn = connect();
       ArrayList<Torneio> res = new ArrayList<>();
 
@@ -694,7 +712,7 @@ public class ConnectDB {
       return res;
     }
 
-    public static ArrayList<Participante> findAllTorneioParticipante(int torneio_id) {
+    public ArrayList<Participante> findAllTorneioParticipante(int torneio_id) {
       Connection conn = connect();
 
       ArrayList<Participante> res = new ArrayList<>();
@@ -740,7 +758,7 @@ public class ConnectDB {
       return res;
     }
 
-    public static void deleteTorneio(int id) {
+    public void deleteTorneio(int id) {
       Connection conn = connect();
 
       String sql = "DELETE FROM TABLE torneio WHERE id = ?";
@@ -756,7 +774,7 @@ public class ConnectDB {
       }
     }
 
-    public static void resetDB() {
+    public void resetDB() {
       dropTables();
       createTables();
     }
@@ -766,7 +784,7 @@ public class ConnectDB {
      * @param args the command line arguments 
      */  
     public static void main(String[] args) throws ClassNotFoundException {        
-      resetDB();
+      // resetDB();
       // Torneio torn = findTorneio(1);
       //
       // System.out.println(torn.getNome());
@@ -774,76 +792,18 @@ public class ConnectDB {
     }  
 }
 
-class TorneioService {
-  public static void createTorneio(Torneio torneio, int organizador_id) {        
-    ConnectDB.insertTorneio(torneio);
-      
-    ConnectDB.criarTorneio(organizador_id, torneio.getId());
-  }   
-
-  public static Torneio findOneTorneio(int id) {
-    return ConnectDB.findTorneio(id);
-  }
-
-  public static ArrayList<Torneio> findAllTorneio() {
-    return ConnectDB.findAllTorneio();
-  }
-
-  public static void deleteTorneio(int id) {
-    ConnectDB.deleteTorneio(id);
-  }
-
-  public ArrayList<Participante> findAllTorneioParticipante(int torneio_id) {
-    return ConnectDB.findAllTorneioParticipante(torneio_id);
-  }
-}
-
-class OrganizadorService {
-  public static void createOrganizador(Organizador organizador) {
-    ConnectDB.createOrganizador(organizador);
-  }   
-
-  public static Organizador findOneOrganizador(int id) {
-    return ConnectDB.findOrganizador(id);
-  }
-
-  public static ArrayList<Organizador> findAllOrganizador() {
-    return ConnectDB.findAllOrganizador();
-  }
-
-  public static void deleteOrganizador(int id) {
-    ConnectDB.DeleteOrganizador(id);
-  }
-}
-
-class ParticipanteService {
-  public static void createParticipante(Participante participante) {
-    ConnectDB.createParticipante(participante);
-  }   
-
-  public static void findOneParticipante(int id) {
-    ConnectDB.findParticipante(id);
-  }
-
-  public static ArrayList<Participante> findAllParticipante() {
-    return ConnectDB.findAllParticipante();
-  }
-
-  public static void deleteParticipante(int id) {
-    ConnectDB.deleteParticipante(id);
-  }
-}
-
-class PartidaService {
-  PartidaService() {}
-
-  public static void createPartida() {}
-
-  public static void findOnePartida() {}
-
-  public static void findAllPartida() {}
-
-  public static void addPatidaResult() {}
-
-  public static void deletePartida() {}
-}
+// class PartidaService {
+//   public static void createPartida(Partida partida, int torneio_id, int primeioJogador_id, int segundoJogador_id) {
+//     ConnectDB.createPartida(partida, torneio_id, primeioJogador_id, segundoJogador_id); 
+//   }
+//
+//   public static void findOnePartida() {
+//
+//   }
+//
+//   public static void findAllPartida() {}
+//
+//   public static void addPatidaResult() {}
+//
+//   public static void deletePartida() {}
+// }
