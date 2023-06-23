@@ -14,8 +14,6 @@ import java.util.Collections;
  */
 public class MataMata extends Torneio implements gerenciarTorneio{
     private ArrayList<Participante> participantesAtuais;
-    private int numPartidas = 15;
-    private int partidaAtual = 1;
     
     MataMata(){
         super();
@@ -25,6 +23,7 @@ public class MataMata extends Torneio implements gerenciarTorneio{
             String regras, int id, Organizador organizador){
         
         super(nome, descricao, local, dataInicio, dataInicioInscricao, periodoTorneio, periodoInscricao, regras, id, 9, 16, 1, organizador);           
+        this.numPartidas = 15;
     }
       
     public void setResultadoPartida(ArrayList<Integer> resultado, Boolean capote){

@@ -12,8 +12,6 @@ import java.util.Collections;
  */
 public class Liga extends Torneio implements gerenciarTorneio{
     private ArrayList<ArrayList<Integer>> tabela;
-    private int numPartidas;
-    private int partidaAtual = 0;
     
     Liga(){
         super();
@@ -58,9 +56,7 @@ public class Liga extends Torneio implements gerenciarTorneio{
         
          Collections.sort(this.tabela, new ComparadorLinha());
     }
-    
-    
-    
+   
     public Partida getProximaPartida(){
         return this.partidas.get(this.partidaAtual);
     };
