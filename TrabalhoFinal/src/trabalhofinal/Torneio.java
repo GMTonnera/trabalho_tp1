@@ -194,6 +194,22 @@ public class Torneio {
     public LocalDate getFimTorneio(){
         return this.dataInicio.plus(Period.ofDays(this.periodoTorneio));
     }
+
+    public int getNumPartidas() {
+      return this.numPartidas;
+    }
+
+    public void setNumPartidas(int numPartidas) {
+      this.numPartidas = numPartidas;
+    }
+
+    public int getPartidaAtual() {
+      return this.partidaAtual;
+    }
+
+    public void setPartidaAtual(int partidaAtual) {
+      this.partidaAtual = partidaAtual;
+    }
     
     public void removeParticipante(int id){
         for(int i = 0; i < this.participantes.size(); i++){
