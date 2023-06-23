@@ -30,7 +30,7 @@ public class LTorneios extends javax.swing.JFrame {
             Object linha[] = new Object[]{TrabalhoFinal.torneios.get(i).getId(),
                                           TrabalhoFinal.torneios.get(i).getNome(),
                                           TrabalhoFinal.torneios.get(i).getLocal(),
-                                          TrabalhoFinal.torneios.get(i).getDataInicio().toString(),
+                                          TrabalhoFinal.torneios.get(i).getDataInicioInscricao().toString(),
                                           TrabalhoFinal.torneios.get(i).getDataInicio().toString()};
             modelo.addRow(linha);
         }
@@ -132,7 +132,7 @@ public class LTorneios extends javax.swing.JFrame {
         // TODO add your handling code here:
         int i = this.tblTorneios.getSelectedRow();
 
-        if(i >= 0 && i < TrabalhoFinal.torneios.size()){
+        if(i >= 0 && i < TrabalhoFinal.torneios.size() && TrabalhoFinal.currentTorneio.getId() == -1){
             TrabalhoFinal.setCurrentTorneio(i);
             new TelaTorneioInfo().setVisible(true);
         }

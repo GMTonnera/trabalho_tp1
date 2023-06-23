@@ -86,7 +86,7 @@ public class TelaPerfil extends javax.swing.JFrame {
 
         jLabel4.setText("Vitórias:");
 
-        jLabel5.setText("Derrotas");
+        jLabel5.setText("Derrotas:");
 
         jLabel6.setText("Capotes recebidos:");
 
