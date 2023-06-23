@@ -36,8 +36,6 @@ public class ConnectDB {
 
     String dropInscricao = "DROP TABLE inscricao";
 
-    String dropResultado = "DROP TABLE resultado";
-
     String dropPartida = "DROP TABLE partida";
 
     String dropTorneio = "DROP TABLE torneio";
@@ -51,7 +49,6 @@ public class ConnectDB {
       // create a new table
       stmt.execute(dropCriarTorneio);
       stmt.execute(dropInscricao);
-      stmt.execute(dropResultado);
       stmt.execute(dropPartida);
       stmt.execute(dropTorneio);
       stmt.execute(dropParticipante);
@@ -104,17 +101,6 @@ public class ConnectDB {
         + "        REFERENCES participante (id)\n"
         + "           ON DELETE CASCADE\n"
         + "           ON UPDATE NO ACTION\n"
-        + ");";
-
-    String ResultadosTable = "CREATE TABLE IF NOT EXISTS resultado (\n"
-        + "    id integer PRIMARY KEY AUTOINCREMENT,\n"
-        + "    partidaId integer NOT NULL,\n"
-        + "    potuacaoJogador1 integer NOT NULL,\n"
-        + "    pontuacaoJogador2 integer NOT NULL,\n"
-        + "    ordem integer NOT NULL,\n"
-        + "    capote integer NOT NULL,\n"
-        + "    FOREIGN KEY (partidaId)\n"
-        + "        REFERENCES partida (id)\n"
         + ");";
 
     String TorneioTable = "CREATE TABLE IF NOT EXISTS torneio (\n"
@@ -170,7 +156,6 @@ public class ConnectDB {
       stmt.execute(ParticipanteTable);
       stmt.execute(OrganizadorTable);
       stmt.execute(PartidaTable);
-      stmt.execute(ResultadosTable);
       stmt.execute(TorneioTable);
       stmt.execute(InscricaoTable);
       stmt.execute(CriarTorneioTable);
