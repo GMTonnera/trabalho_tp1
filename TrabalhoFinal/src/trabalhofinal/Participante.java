@@ -15,6 +15,11 @@ public class Participante extends Usuario{
         super();
     }
     
+    Participante(int id){
+        super(id);
+    }
+    
+    
     Participante(int id, String nome, String curso, String email, String senha){
         super(id, nome, curso, email, senha);
         this.numVitorias = 0;

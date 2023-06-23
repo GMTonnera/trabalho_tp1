@@ -11,9 +11,7 @@ import java.util.ArrayList;
  */
 public interface gerenciarTorneio {
     
-    public void atualizarPontuacao();
-    
-    public void setResultadoPartida(ArrayList<int[]> resultados, ArrayList<Boolean> capotes);
+    public void setResultadoPartida(ArrayList<Integer> resultados, Boolean capotes);
     
     public Partida getProximaPartida();
     

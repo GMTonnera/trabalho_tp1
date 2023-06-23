@@ -18,9 +18,14 @@ public class Torneio {
     protected LocalDate dataInicio, dataInicioInscricao; 
     protected ArrayList<Participante> participantes;
     protected Organizador organizador;
-    protected ArrayList<Partida> partidas; 
+    protected ArrayList<Partida> partidas;
+    protected int estado = 0;
             
     Torneio(){}
+    
+    public Torneio(int id){
+        this.id = id;
+    }
     
     Torneio(String nome, String descricao, String local, LocalDate dataInicio, LocalDate dataInicioInscricao,int periodoTorneio, int periodoInscricao, 
             String regras, int id, int minParticipantes, int maxParticipantes, int numJogosPartida, Organizador organizador){
@@ -42,6 +47,7 @@ public class Torneio {
         this.minParticipantes = minParticipantes;
         this.dataInicioInscricao = dataInicioInscricao;
     }
+
     
     public int getId(){
         return this.id;
@@ -195,5 +201,26 @@ public class Torneio {
                 break;
             }
         }
+    }
+    
+    public void atualizarEstado(){
+        LocalDate hoje = LocalDate.now();
+        if(hoje.compareTo(this.dataInicioInscricao) < 0){
+            this.estado = 0;
+        } else if(hoje.compareTo(this.dataInicioInscricao) >= 0 && hoje.compareTo(this.getFimInscricao()) <= 0){
+            this.estado = 1;
+        } else if(hoje.compareTo(this.dataInicio) >= 0 && hoje.compareTo(this.getFimTorneio()) <= 0){
+            this.estado = 2;
+        } else{
+            this.estado = 3;
+        }
+    }
+
+    public int getEstado() {
+        return estado;
+    }
+
+    public void setEstado(int estado) {
+        this.estado = estado;
     }
 }

@@ -14,6 +14,10 @@ abstract public class Usuario {
     
     Usuario(){}
     
+    Usuario(int id){
+        this.id = id;
+    }
+    
     Usuario(int id, String nome, String curso, String email, String senha){
         this.id = id;
         this.nome = nome;

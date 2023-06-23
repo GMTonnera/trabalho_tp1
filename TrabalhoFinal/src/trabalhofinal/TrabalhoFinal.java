@@ -6,7 +6,8 @@ package trabalhofinal;
 import java.time.LocalDate;
 import telas.Login;
 import java.util.ArrayList;
-import trabalhofinal.Organizador;
+import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 /**
  *
  * @author guton
@@ -20,33 +21,24 @@ public class TrabalhoFinal {
      */
     public static Usuario login;
     public static ArrayList<Usuario> usuarios = new ArrayList();
+    public static ArrayList<Organizador> organizadores = new ArrayList();
+    public static ArrayList<Participante> participantes = new ArrayList();
     public static int currentUserId = 0;
     public static int currentTornamentId = 0;
     public static ArrayList<Torneio> torneios = new ArrayList();
-    public static Torneio currentTorneio;
+    public static Torneio currentTorneio = new Torneio(-1);
+    public static int currentPartidaId = 0;
     
     
     public static void main(String[] args) {
         // TODO code application logic here
-        TrabalhoFinal.usuarios.add(new Participante(0, "Gustavo", "CiC", "gustavo", "1234"));
-        TrabalhoFinal.usuarios.add(new Organizador(1, "Gustavo", "CiC", "gustavo2", "1234"));
-        TrabalhoFinal.torneios.add(new MataMata("Mata-mata Teste",
-                                                "Torneio do tipo mata-mata de teste",
-                                                "Cacomp",
-                                                LocalDate.parse("2002-11-13"),
-                                                LocalDate.parse("2002-10-13"),
-                                                10,
-                                                10,
-                                                "Sinuquinha",
-                                                0,
-                                                5,
-                                                10, 
-                                                1,
-                                                (Organizador) TrabalhoFinal.usuarios.get(1)));
         
-        TrabalhoFinal.currentUserId = 2;
-        TrabalhoFinal.currentTornamentId = 1;
-        new Login().setVisible(true);
+        adicionarUsuarios(100, 10);
+        criarTorneios(10, 10);
+        inscreverParticipantes();
+        Liga teste = (Liga) TrabalhoFinal.torneios.get(10);
+        teste.criarPartidas();
+        // new Login().setVisible(true);
     }
     
     // Método que cria uma instâcia da classe Participante ou de Organizador e coloca no banco de dados
@@ -87,11 +79,11 @@ public class TrabalhoFinal {
     }
     
     public static void criarTorneio(String nome, String descricao, String local, LocalDate dataInicio, LocalDate dataInicioInscricao,int periodoTorneio, int periodoInscricao, 
-                                    String regras, int minParticipantes, int maxParticipantes, int numJogosPartida, Organizador organizador, int tipo){
+                                    String regras, Organizador organizador, int tipo){
         if(tipo == 0){
-            TrabalhoFinal.torneios.add(new MataMata(nome, descricao, local, dataInicio, dataInicioInscricao, periodoTorneio, periodoInscricao, regras, TrabalhoFinal.currentTornamentId, minParticipantes, maxParticipantes, numJogosPartida, organizador));
+            TrabalhoFinal.torneios.add(new MataMata(nome, descricao, local, dataInicio, dataInicioInscricao, periodoTorneio, periodoInscricao, regras, TrabalhoFinal.currentTornamentId, organizador));
         } else{
-            TrabalhoFinal.torneios.add(new Liga(nome, descricao, local, dataInicio, dataInicioInscricao, periodoTorneio, periodoInscricao, regras, TrabalhoFinal.currentTornamentId, minParticipantes, maxParticipantes, numJogosPartida, organizador));
+            TrabalhoFinal.torneios.add(new Liga(nome, descricao, local, dataInicio, dataInicioInscricao, periodoTorneio, periodoInscricao, regras, TrabalhoFinal.currentTornamentId, organizador));
         }
         TrabalhoFinal.currentTornamentId += 1;
     }
@@ -115,5 +107,84 @@ public class TrabalhoFinal {
     
     public static void cancelarInscricao(){
         TrabalhoFinal.currentTorneio.removeParticipante(TrabalhoFinal.login.getId());
+    }
+    
+    private static void adicionarUsuarios(int n, int m){
+        for(int i = 0; i < n; i++){
+            Participante p = new Participante(i,
+                                             String.format("Gustavo%d", i),
+                                            "Ciência da Computação",
+                                            String.format("gustavo%d@gmail.com", i),
+                                            String.format("senha%d", i));
+            TrabalhoFinal.usuarios.add(p);
+            TrabalhoFinal.participantes.add(p);
+        }
+        
+        for(int i = 0; i < m; i++){
+            Organizador o = new Organizador(i+n,
+                                        String.format("Vinicius%d", i),
+                                       "Ciência da Computação",
+                                       String.format("vinicius%d@gmail.com", i),
+                                       String.format("password%d", i));
+            TrabalhoFinal.usuarios.add(o);
+            TrabalhoFinal.organizadores.add(o);
+        }
+        TrabalhoFinal.currentUserId = n+m;
+    }
+    
+    private static void criarTorneios(int n, int m){
+        Random r = new Random();
+        for(int i = 0; i < n; i++){
+            long minDay = LocalDate.of(2023, 1, 1).toEpochDay();
+            long maxDay = LocalDate.now().toEpochDay();
+            long randomDay = ThreadLocalRandom.current().nextLong(minDay, maxDay);
+            LocalDate randomDate1 = LocalDate.ofEpochDay(randomDay);
+            LocalDate randomDate2 = LocalDate.ofEpochDay(randomDay).plusDays(11);
+            
+            TrabalhoFinal.criarTorneio(String.format("Mata-Mata Test %d", i),
+                                       "Torneio do tipo mata-mata criado pelo método privado criarTorneios da classe TrabalhoFinal para testar o aplicativo.",
+                                       "Cacomp",
+                                       randomDate2,
+                                       randomDate1,
+                                       10, 
+                                       10,
+                                       "Sinuquinha",
+                                       TrabalhoFinal.organizadores.get(r.nextInt(TrabalhoFinal.organizadores.size())),
+                                       0);
+        }
+        
+        for(int i = 0; i < m; i++){
+            long minDay = LocalDate.of(2023, 1, 1).toEpochDay();
+            long maxDay = LocalDate.now().toEpochDay();
+            long randomDay = ThreadLocalRandom.current().nextLong(minDay, maxDay);
+            LocalDate randomDate1 = LocalDate.ofEpochDay(randomDay);
+            LocalDate randomDate2 = LocalDate.ofEpochDay(randomDay).plusDays(11);
+            
+            TrabalhoFinal.criarTorneio(String.format("Liga Test %d", i),
+                                       "Torneio do tipo mata-mata criado pelo método privado criarTorneios da classe TrabalhoFinal para testar o aplicativo.",
+                                       "Cacomp",
+                                       randomDate2,
+                                       randomDate1,
+                                       10, 
+                                       10,
+                                       "Sinuquinha",
+                                       TrabalhoFinal.organizadores.get(r.nextInt(TrabalhoFinal.organizadores.size())),
+                                       1);
+        }
+    }
+    
+    private static void inscreverParticipantes(){
+        Random r = new Random();
+        for(int i = 0; i < 10; i++){
+            for(int j = 0; j < 9; j++){
+                TrabalhoFinal.torneios.get(i).addParticipante(TrabalhoFinal.participantes.get(r.nextInt(TrabalhoFinal.participantes.size())));
+            }
+        }
+        
+        for(int i = 10; i < 20; i++){
+            for(int j = 0; j < 10; j++){
+                TrabalhoFinal.torneios.get(i).addParticipante(TrabalhoFinal.participantes.get(r.nextInt(TrabalhoFinal.participantes.size())));
+            }
+        }
     }
 }   

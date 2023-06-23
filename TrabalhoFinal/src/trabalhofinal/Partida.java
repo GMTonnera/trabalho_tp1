@@ -4,68 +4,85 @@
  */
 package trabalhofinal;
 import java.util.ArrayList;
-import java.util.AbstractMap.SimpleEntry;
-
 /**
  *
  * @author guton
  */
 public class Partida {
-    private int id, numJogos;
-    private ArrayList<SimpleEntry> resultados;
-    private ArrayList<Boolean> capotes;
+    private int id;
+    private ArrayList<Integer> resultado;
+    private boolean capote;
+    private Participante p1, p2;
+    private Participante vencedor;
+    private Participante perdedor;
     
     Partida(){
-        this.resultados = new ArrayList<>();
-        this.capotes = new ArrayList<>();
+        this.resultado = new ArrayList<>();
+        this.capote = false;
     }
     
-    Partida(int id, int numJogos){
+    Partida(int id, Participante p1,  Participante p2){
         this.id = id;
-        this.numJogos = numJogos;
-        this.resultados = new ArrayList<>();
-        this.capotes = new ArrayList<>();
+        this.resultado = new ArrayList<>();
+        this.capote = false;
+        this.p1 = p1;
+        this.p2 = p2;
     }
-    
-    public int getId(){
-        return this.id;
+
+    public int getId() {
+        return id;
     }
-    
-    public void setId(int id){
+
+    public ArrayList<Integer> getResultado() {
+        return resultado;
+    }
+
+    public boolean isCapote() {
+        return capote;
+    }
+
+    public Participante getP1() {
+        return p1;
+    }
+
+    public Participante getP2() {
+        return p2;
+    }
+
+    public void setId(int id) {
         this.id = id;
     }
-    
-    public int getNumJogos(){
-        return this.numJogos;
+
+    public void setResultado(ArrayList<Integer> resultado) {
+        this.resultado = resultado;
+        if(this.resultado.get(0) > this.resultado.get(1)){
+            this.vencedor = this.p1;
+            this.perdedor = this.p2;
+        } else{
+            this.vencedor = this.p2;
+            this.perdedor = this.p1;
+        }
+    }
+
+    public void setCapote(boolean capote) {
+        this.capote = capote;
+    }
+
+    public void setP1(Participante p1) {
+        this.p1 = p1;
+    }
+
+    public void setP2(Participante p2) {
+        this.p2 = p2;
     }
     
-    public void setNumJogos(int numJogos){
-        this.numJogos = numJogos;
+    public Participante getVencedor(){
+        return this.vencedor;
     }
     
-    public ArrayList<SimpleEntry> get_Resultados(){
-        return this.resultados;
+    public Participante getPerdedor(){
+        return this.perdedor;
     }
-    
-    public void set_Resultados(ArrayList<SimpleEntry> resultados){
-        this.resultados = resultados;
-    }
-    
-    public ArrayList<Boolean> getCapotes(){
-        return this.capotes;
-    }
-    
-    public void setCapotes(ArrayList<Boolean> capotes){
-        this.capotes = capotes;
-    }
-    
-    public void updateResultados(SimpleEntry resultado, Boolean capote){
-        this.resultados.add(resultado);
-        this.capotes.add(capote);
-    }
-    
-    
-    
     
     
 }
