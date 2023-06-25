@@ -21,6 +21,10 @@ public class TorneioService {
     this.db.criarTorneio(organizador_id, torneio.getId());
   }   
 
+  public void updateTorneio(Torneio torneio) {
+    this.db.updateTorneio(torneio);  
+  }
+
   public Torneio findOneTorneio(int id) {
     return this.db.findTorneio(id);
   }
