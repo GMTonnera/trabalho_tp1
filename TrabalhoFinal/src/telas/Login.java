@@ -158,7 +158,7 @@ public class Login extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Por favor, preencha todos os campos!", "Mensagem", JOptionPane.INFORMATION_MESSAGE);
         } else{
             // Verificar se o usuário está no banco de dados
-            boolean flag = TrabalhoFinal.checkUsuario(this.txtEmail.getText(), String.valueOf(this.jPasswordField1.getPassword()));
+            boolean flag = TrabalhoFinal.checkLogin(this.txtEmail.getText(), String.valueOf(this.jPasswordField1.getPassword()));
             if(flag){
                 TrabalhoFinal.login(this.txtEmail.getText(), String.valueOf(this.jPasswordField1.getPassword()));
                 this.setVisible(false);

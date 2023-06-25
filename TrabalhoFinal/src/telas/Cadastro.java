@@ -62,7 +62,7 @@ public class Cadastro extends javax.swing.JFrame {
 
         lblSenha.setText("Senha");
 
-        lblLogin.setText("já tem conta? clique aqui");
+        lblLogin.setText("Já tem conta? Clique aqui!");
         lblLogin.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblLoginMouseClicked(evt);
@@ -78,7 +78,7 @@ public class Cadastro extends javax.swing.JFrame {
 
         lblNome.setText("Nome");
 
-        lblCurso.setText("curso");
+        lblCurso.setText("Curso");
 
         cbxTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "jogador", "organizador" }));
 
@@ -93,33 +93,31 @@ public class Cadastro extends javax.swing.JFrame {
         pnlCadastroLayout.setHorizontalGroup(
             pnlCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlCadastroLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(lblLogin)
-                .addGap(254, 254, 254))
-            .addGroup(pnlCadastroLayout.createSequentialGroup()
-                .addGap(284, 284, 284)
-                .addComponent(btnCadastro)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlCadastroLayout.createSequentialGroup()
+                .addGap(40, 40, 40)
+                .addGroup(pnlCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(lblNome)
+                    .addComponent(lblEmail)
+                    .addComponent(txtEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)
+                    .addComponent(txtNome))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 184, Short.MAX_VALUE)
                 .addGroup(pnlCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlCadastroLayout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addGroup(pnlCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(lblNome)
-                            .addComponent(lblEmail)
-                            .addComponent(txtEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)
-                            .addComponent(txtNome)))
-                    .addGroup(pnlCadastroLayout.createSequentialGroup()
-                        .addGap(277, 277, 277)
-                        .addComponent(cbxTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
-                .addGroup(pnlCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(lblCurso)
-                        .addComponent(lblSenha)
-                        .addComponent(txtCurso, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblCurso)
+                    .addComponent(lblSenha)
+                    .addComponent(txtCurso, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(36, 36, 36))
+            .addGroup(pnlCadastroLayout.createSequentialGroup()
+                .addGroup(pnlCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlCadastroLayout.createSequentialGroup()
+                        .addGap(231, 231, 231)
+                        .addComponent(lblLogin))
+                    .addGroup(pnlCadastroLayout.createSequentialGroup()
+                        .addGap(262, 262, 262)
+                        .addComponent(btnCadastro))
+                    .addGroup(pnlCadastroLayout.createSequentialGroup()
+                        .addGap(252, 252, 252)
+                        .addComponent(cbxTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnlCadastroLayout.setVerticalGroup(
             pnlCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -132,7 +130,7 @@ public class Cadastro extends javax.swing.JFrame {
                 .addGroup(pnlCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtCurso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(pnlCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblEmail)
                     .addComponent(lblSenha))
@@ -140,13 +138,13 @@ public class Cadastro extends javax.swing.JFrame {
                 .addGroup(pnlCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(32, 32, 32)
+                .addGap(58, 58, 58)
                 .addComponent(cbxTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(94, 94, 94)
+                .addGap(68, 68, 68)
                 .addComponent(lblLogin)
-                .addGap(57, 57, 57)
+                .addGap(18, 18, 18)
                 .addComponent(btnCadastro)
-                .addGap(39, 39, 39))
+                .addGap(78, 78, 78))
         );
 
         javax.swing.GroupLayout TelaLayout = new javax.swing.GroupLayout(Tela);
@@ -169,8 +167,8 @@ public class Cadastro extends javax.swing.JFrame {
                 .addGap(20, 20, 20)
                 .addComponent(Titulo, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pnlCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(pnlCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(113, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -197,13 +195,19 @@ public class Cadastro extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Por favor, preencha todos os campos!", "Mensagem", JOptionPane.INFORMATION_MESSAGE);
         } else{
             // Criar Usuário
-            TrabalhoFinal.createUsuario(txtNome.getText(), txtCurso.getText(), txtEmail.getText(), String.valueOf(this.jPasswordField1.getPassword()), cbxTipo.getSelectedIndex());
+            if(TrabalhoFinal.checkEmail(txtEmail.getText())){
+                JOptionPane.showMessageDialog(null, "Email já cadastrado!", "Mensagem", JOptionPane.INFORMATION_MESSAGE);
+            } else if(!TrabalhoFinal.validarEmail(this.txtEmail.getText())){
+                JOptionPane.showMessageDialog(null, "Email inválido!", "Mensagem", JOptionPane.INFORMATION_MESSAGE);
+            }else{
+                TrabalhoFinal.createUsuario(txtNome.getText(), txtCurso.getText(), txtEmail.getText(), String.valueOf(this.jPasswordField1.getPassword()), cbxTipo.getSelectedIndex());
             
-            this.txtCurso.setText("");
-            this.txtNome.setText("");
-            this.txtEmail.setText("");
-            this.jPasswordField1.setText("");
-            JOptionPane.showMessageDialog(null, "Usuário criado!", "Mensagem", JOptionPane.INFORMATION_MESSAGE);
+                this.txtCurso.setText("");
+                this.txtNome.setText("");
+                this.txtEmail.setText("");
+                this.jPasswordField1.setText("");
+                JOptionPane.showMessageDialog(null, "Usuário criado!", "Mensagem", JOptionPane.INFORMATION_MESSAGE);
+            }
             
         }
     }//GEN-LAST:event_btnCadastroActionPerformed

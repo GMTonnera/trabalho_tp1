@@ -60,7 +60,7 @@ public class MataMataPontuacao extends javax.swing.JFrame {
         
         ArrayList<Partida> partidas = TrabalhoFinal.currentTorneio.getPartidas();
         
-        if(TrabalhoFinal.currentTorneio.getEstado() == 2){
+        if(TrabalhoFinal.currentTorneio.getStatusTorneio() == 2){
             for(int i = 0; i < partidas.size(); i++){
                 labels1.get(i).setText(String.format("%s x %s", partidas.get(i).getP1().getNome(), partidas.get(i).getP2().getNome()));
                 ArrayList<Integer> resultado = partidas.get(i).getResultado();

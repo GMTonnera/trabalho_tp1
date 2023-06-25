@@ -27,6 +27,7 @@ public class ListaParticipantes extends javax.swing.JFrame {
     public void setup(){
         DefaultTableModel modelo = new DefaultTableModel(new Object[] {"ID", "Nome", "Curso"}, 0);
         ArrayList<Participante> participantes = TrabalhoFinal.currentTorneio.getParticipantes();
+
         for(int i = 0; i < participantes.size(); i++){
             Object linha[] = new Object[]{participantes.get(i).getId(),
                                           participantes.get(i).getNome(),

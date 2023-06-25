@@ -25,7 +25,6 @@ public class LTorneios extends javax.swing.JFrame {
     
     public void setup(){
         DefaultTableModel modelo = new DefaultTableModel(new Object[] {"ID", "Nome", "Local", "Início das Inscrições", "Início"}, 0);
-        
         for(int i = 0; i < TrabalhoFinal.torneios.size(); i++){
             Object linha[] = new Object[]{TrabalhoFinal.torneios.get(i).getId(),
                                           TrabalhoFinal.torneios.get(i).getNome(),
@@ -130,10 +129,11 @@ public class LTorneios extends javax.swing.JFrame {
 
     private void tblTorneiosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblTorneiosMouseClicked
         // TODO add your handling code here:
+        System.out.println(TrabalhoFinal.torneios.get(0).getParticipantes().size());
         int i = this.tblTorneios.getSelectedRow();
-
         if(i >= 0 && i < TrabalhoFinal.torneios.size() && TrabalhoFinal.currentTorneio.getId() == -1){
-            TrabalhoFinal.setCurrentTorneio(i);
+            TrabalhoFinal.setCurrentTorneio((int) this.tblTorneios.getValueAt(i, 0));
+            
             new TelaTorneioInfo().setVisible(true);
         }
     }//GEN-LAST:event_tblTorneiosMouseClicked
