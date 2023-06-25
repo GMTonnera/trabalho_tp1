@@ -52,7 +52,7 @@ public class MataMata extends Torneio implements gerenciarTorneio{
                 this.participantes.add(new Participante(-1, "loser", "loser", "loser", "loser"));
             }
         }
-        for(int i = 0; i < 15; i=i+2){
+        for(int i = 0; i < 16; i=i+2){
             Partida p = new Partida(TrabalhoFinal.currentPartidaId, this.participantes.get(i), this.participantes.get(i+1));
             this.partidas.add(p);
             TrabalhoFinal.currentPartidaId++;

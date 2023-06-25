@@ -16,11 +16,11 @@ public class Torneio {
     protected int id, minParticipantes, maxParticipantes, statusTorneio, numJogosPartida, periodoInscricao, periodoTorneio;
     protected String nome, descricao, local, regras;
     protected LocalDate dataInicio, dataInicioInscricao; 
-    protected ArrayList<Participante> participantes;
+    protected ArrayList<Participante> participantes = new ArrayList();
     protected Organizador organizador;
-    protected ArrayList<Partida> partidas;
+    protected ArrayList<Partida> partidas = new ArrayList();
     protected int numPartidas;
-    protected int partidaAtual = 0;
+    protected int partidaAtual;
             
     Torneio(){}
     
@@ -47,6 +47,8 @@ public class Torneio {
         this.partidas = new ArrayList();
         this.minParticipantes = minParticipantes;
         this.dataInicioInscricao = dataInicioInscricao;
+        this.partidaAtual = 0;
+
     }
 
     
@@ -194,22 +196,6 @@ public class Torneio {
     public LocalDate getFimTorneio(){
         return this.dataInicio.plus(Period.ofDays(this.periodoTorneio));
     }
-
-    public int getNumPartidas() {
-      return this.numPartidas;
-    }
-
-    public void setNumPartidas(int numPartidas) {
-      this.numPartidas = numPartidas;
-    }
-
-    public int getPartidaAtual() {
-      return this.partidaAtual;
-    }
-
-    public void setPartidaAtual(int partidaAtual) {
-      this.partidaAtual = partidaAtual;
-    }
     
     public void removeParticipante(int id){
         for(int i = 0; i < this.participantes.size(); i++){
@@ -231,5 +217,21 @@ public class Torneio {
         } else{
             this.statusTorneio = 3;
         }
+    }
+
+    public int getNumPartidas() {
+        return numPartidas;
+    }
+
+    public int getPartidaAtual() {
+        return partidaAtual;
+    }
+
+    public void setNumPartidas(int numPartidas) {
+        this.numPartidas = numPartidas;
+    }
+
+    public void setPartidaAtual(int partidaAtual) {
+        this.partidaAtual = partidaAtual;
     }
 }

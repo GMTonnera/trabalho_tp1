@@ -11,7 +11,7 @@ import java.util.Collections;
  * @author guton
  */
 public class Liga extends Torneio implements gerenciarTorneio{
-    private ArrayList<ArrayList<Integer>> tabela;
+    private ArrayList<ArrayList<Integer>> tabela = new ArrayList();
     
     Liga(){
         super();

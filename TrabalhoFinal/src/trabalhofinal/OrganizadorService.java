@@ -14,7 +14,6 @@ public class OrganizadorService {
   ConnectDB connect = new ConnectDB();
 
   public void createOrganizador(Organizador organizador) {
-      System.out.println(organizador.getNome());  
       
     this.connect.createOrganizador(organizador);
   }   
@@ -28,6 +27,6 @@ public class OrganizadorService {
   }
 
   public void deleteOrganizador(int id) {
-    this.connect.DeleteOrganizador(id);
+    this.connect.deleteOrganizador(id);
   }
 }

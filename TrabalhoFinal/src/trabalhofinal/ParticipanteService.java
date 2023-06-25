@@ -28,4 +28,8 @@ public class ParticipanteService {
   public void deleteParticipante(int id) {
     this.connect.deleteParticipante(id);
   }
+  
+  public void inscreverParticipante(int id_torneio, int id_participante){
+      this.connect.inscreverParticipante(id_torneio, id_participante);
+  }
 }
