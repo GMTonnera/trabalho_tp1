@@ -25,7 +25,6 @@ public class MataMataPontuacao extends javax.swing.JFrame {
     public void setup(){
         ArrayList<javax.swing.JLabel> labels1 = new ArrayList();
         labels1.add(lblJogo1);
-        labels1.add(lblJogo1);
         labels1.add(lblJogo2);
         labels1.add(lblJogo3);
         labels1.add(lblJogo4);
@@ -42,29 +41,28 @@ public class MataMataPontuacao extends javax.swing.JFrame {
         labels1.add(lblJogo15);
         
         ArrayList<javax.swing.JLabel> labels2 = new ArrayList();
-        labels1.add(lblResultado1);
-        labels1.add(lblResultado2);
-        labels1.add(lblResultado3);
-        labels1.add(lblResultado4);
-        labels1.add(lblResultado5);
-        labels1.add(lblResultado6);
-        labels1.add(lblResultado7);
-        labels1.add(lblResultado8);
-        labels1.add(lblResultado9);
-        labels1.add(lblResultado10);
-        labels1.add(lblResultado11);
-        labels1.add(lblResultado12);
-        labels1.add(lblResultado13);
-        labels1.add(lblResultado14);
-        labels1.add(lblResultado15);
+        labels2.add(lblResultado1);
+        labels2.add(lblResultado2);
+        labels2.add(lblResultado3);
+        labels2.add(lblResultado4);
+        labels2.add(lblResultado5);
+        labels2.add(lblResultado6);
+        labels2.add(lblResultado7);
+        labels2.add(lblResultado8);
+        labels2.add(lblResultado9);
+        labels2.add(lblResultado10);
+        labels2.add(lblResultado11);
+        labels2.add(lblResultado12);
+        labels2.add(lblResultado13);
+        labels2.add(lblResultado14);
+        labels2.add(lblResultado15);
         
         ArrayList<Partida> partidas = TrabalhoFinal.currentTorneio.getPartidas();
-        
-        if(TrabalhoFinal.currentTorneio.getStatusTorneio() == 2){
+        if(TrabalhoFinal.currentTorneio.getStatusTorneio() >= 2){
             for(int i = 0; i < partidas.size(); i++){
                 labels1.get(i).setText(String.format("%s x %s", partidas.get(i).getP1().getNome(), partidas.get(i).getP2().getNome()));
                 ArrayList<Integer> resultado = partidas.get(i).getResultado();
-                labels2.get(i).setText(String.format("%d x %d", resultado.get(0), resultado.get(0)));
+                labels2.get(i).setText(String.format("%d x %d", resultado.get(0), resultado.get(1)));
             }
         }
     }

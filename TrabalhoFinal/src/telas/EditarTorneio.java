@@ -4,6 +4,8 @@
  */
 package telas;
 
+import trabalhofinal.TrabalhoFinal;
+
 /**
  *
  * @author Vini
@@ -16,6 +18,7 @@ public class EditarTorneio extends javax.swing.JFrame {
     public EditarTorneio() {
         initComponents();
         setLocationRelativeTo(null);
+        System.out.println(TrabalhoFinal.currentTorneio.getPartidas().size());
     }
 
     /**
