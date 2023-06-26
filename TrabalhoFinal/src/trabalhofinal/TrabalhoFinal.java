@@ -291,15 +291,14 @@ public class TrabalhoFinal {
                 ((MataMata) t).refazerParticipantesAtuais();
                 ((MataMata) t).generateQuartasFinal();
             } else if(t.getStatusTorneio() == 2 && t.getPartidaAtual() == 12 && t instanceof MataMata){
-                System.out.println("ok");
                 ((MataMata) t).refazerParticipantesAtuais();
                 ((MataMata) t).generateSemiFinal();
             } else if(t.getStatusTorneio() == 2 && t.getPartidaAtual() == 14 && t instanceof MataMata){
                 ((MataMata) t).refazerParticipantesAtuais();
                 ((MataMata) t).generateFinal();
-            } else if(t.getStatusTorneio() == 2 && t instanceof Liga){
-                    ((Liga) t).inicializarTabela();
-                    ((Liga) t).atualizarTabela();
+            } else if(t.getStatusTorneio() >= 2 && t instanceof Liga){
+                ((Liga) t).inicializarTabela();
+                ((Liga) t).atualizarTabela();
             }
             
             for(Partida p : t.getPartidas()){
