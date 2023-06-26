@@ -23,7 +23,7 @@ public class TrabalhoFinal {
     public static Usuario login;
     public static int currentTornamentId, currentOrganizadorId, currentParticipanteId;
     public static Torneio currentTorneio = new Torneio(-1);
-    public static int currentPartidaId = 0;
+    public static int currentPartidaId = 2040;
     public static ArrayList<Torneio> torneios = new ArrayList();
     public static ArrayList<Participante> participantes = new ArrayList();
     public static ArrayList<Organizador> organizadores = new ArrayList();
@@ -32,10 +32,11 @@ public class TrabalhoFinal {
     public static void main(String[] args) {
         // TODO code application logic here
         
+        // TrabalhoFinal.deletePartidas();
         TrabalhoFinal.gerarListaTorneios();
-        //TrabalhoFinal.gerarListaParticipantes();
-        //TrabalhoFinal.gerarListaOrganizadores();
-        
+        TrabalhoFinal.gerarListaParticipantes();
+        TrabalhoFinal.gerarListaOrganizadores();
+        // TrabalhoFinal.resultadosPartidas();
         
         // adicionarUsuarios(100, 10);
         // criarTorneios(10, 10);
@@ -43,7 +44,7 @@ public class TrabalhoFinal {
         // inscreverParticipantesLiga();
         // Liga teste = (Liga) TrabalhoFinal.torneios.get(10);
         // teste.criarPartidas();
-        // new Login().setVisible(true);
+        new Login().setVisible(true);
     }
     
     // Método que cria uma instâcia da classe Participante ou de Organizador e coloca no banco de dados
@@ -272,25 +273,35 @@ public class TrabalhoFinal {
         TrabalhoFinal.currentTornamentId = TrabalhoFinal.torneios.get(TrabalhoFinal.torneios.size()-1).getId()+1;
         PartidaService ps = new PartidaService();
         
+        
         for(Torneio t : TrabalhoFinal.torneios){
             t.setParticipantes(ts.findAllTorneioParticipante(t.getId()));
             t.atualizarEstado();
-            if(t.getStatusTorneio() >= 2 && t.getPartidaAtual() == 0){
+            t.setPartidas(ts.findAllTorneioPartida(t.getId()));
+            
+            if(t.getStatusTorneio() == 2 && t.getPartidaAtual() == 0){
                 if(t instanceof MataMata){
                     ((MataMata) t).generateOitavasFinal();
                 } else{
                     ((Liga) t).criarPartidas();
                     ((Liga) t).inicializarTabela();
                 }
-                for(Partida p : t.getPartidas()){
-                    ps.createPartida(p, t.getId());
-                }
+            } else if(t.getStatusTorneio() >= 2 && t.getPartidaAtual() == 8 && t instanceof MataMata){
+                ((MataMata) t).refazerParticipantesAtuais();
+                ((MataMata) t).generateQuartasFinal();
+            } else if(t.getStatusTorneio() >= 2 && t.getPartidaAtual() == 12 && t instanceof MataMata){
+                System.out.println("ok");
+                ((MataMata) t).refazerParticipantesAtuais();
+                ((MataMata) t).generateSemiFinal();
+            } else if(t.getStatusTorneio() >= 2 && t.getPartidaAtual() == 14 && t instanceof MataMata){
+                ((MataMata) t).refazerParticipantesAtuais();
+                ((MataMata) t).generateFinal();
+            }
+            
+            for(Partida p : t.getPartidas()){
+                ps.createPartida(p, t.getId());
             }
         }
-        
-        
-        
-        
     }
     
     
@@ -318,6 +329,44 @@ public class TrabalhoFinal {
     
     private static boolean patternMatches(String email, String regex){
         return Pattern.compile(regex).matcher(email).matches();
+    }
+    
+    
+    private static void resultadosPartidas(){
+        PartidaService ps = new PartidaService();
+        TorneioService ts = new TorneioService();
+        Random r1 = new Random();
+        Random r2 = new Random();
+        Random r3 = new Random();
+        
+        for(Torneio t : TrabalhoFinal.torneios){
+            ArrayList<Partida> partidas = ts.findAllTorneioPartida(t.getId());
+            for(Partida p : partidas){
+                 if(p.getResultado().get(0) == p.getResultado().get(1)){
+                    if(r1.nextInt(0, 2) == 1){
+                        if(r2.nextInt(0, 2) == 1){
+                            ps.addPatidaResult(p.getId(), 8, 0, true);
+                        } else{
+                            ps.addPatidaResult(p.getId(), 8, r3.nextInt(1, 8), false);
+                        }
+                    } else{
+                        if(r2.nextInt(0, 2) == 1){
+                            ps.addPatidaResult(p.getId(), 0, 8, true);
+                        } else{
+                            ps.addPatidaResult(p.getId(), r3.nextInt(1, 8), 8, false);
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    
+    private static void deletePartidas(){
+        PartidaService ps = new PartidaService();
+        for(int i = 2020; i < 2060; i++){
+            ps.deletePartida(i);
+        }
     }
     
 }   
