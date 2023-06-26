@@ -18,6 +18,10 @@ public class OrganizadorService {
     this.connect.createOrganizador(organizador);
   }   
 
+  public void updateOrganizadodr(Organizador o) {
+    this.connect.updateOrganizador(o);
+  }
+
   public Organizador findOneOrganizador(int id) {
     return this.connect.findOrganizador(id);
   }
