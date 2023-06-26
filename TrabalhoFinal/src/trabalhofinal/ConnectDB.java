@@ -569,6 +569,36 @@ public class ConnectDB {
     return res;
   }
 
+  public void updateOrganizador(Organizador o) {
+    Connection conn = connect();
+
+    String sql = "UPDATE organizador SET " 
+      + "nome = ?," 
+      + "email = ?," 
+      + "curso = ?,"
+      + "senha = ?,"
+      + "numTorneiosCriados = ? "
+      + "WHERE id = ?";
+    
+     try {
+       PreparedStatement pstmt = conn.prepareStatement(sql);
+
+       pstmt.setString(1, o.getNome());
+       pstmt.setString(2, o.getEmail());
+       pstmt.setString(3, o.getCurso());
+       pstmt.setString(4, o.getSenha());
+       pstmt.setInt(5, o.getNumTorneiosCriados());
+       pstmt.setInt(6, o.getId());
+
+       pstmt.executeUpdate();
+
+       conn.close();
+     } catch(SQLException e) {
+       System.out.println(e.getMessage());
+     }
+
+  }
+
   public void deleteOrganizador(int id) {
     Connection conn = connect();
 
@@ -702,13 +732,13 @@ public class ConnectDB {
     String sql = "UPDATE partida SET " 
       + "nome = ?," 
       + "email = ?," 
-      + "curso = ? "
-      + "senha = ? "
-      + "numVitorias = ? "
-      + "numDerrotas = ? "
-      + "capotesAplicados = ? "
-      + "capotesRecebidos = ? "
-      + "numTorneioJogados = ? "
+      + "curso = ?,"
+      + "senha = ?,"
+      + "numVitorias = ?,"
+      + "numDerrotas = ?,"
+      + "capotesAplicados = ?,"
+      + "capotesRecebidos = ?,"
+      + "numTorneioJogados = ?,"
       + "numTorneiosVencidos = ? "
       + "WHERE id = ?";
     
