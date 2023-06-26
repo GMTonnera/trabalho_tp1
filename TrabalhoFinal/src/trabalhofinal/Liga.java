@@ -97,7 +97,14 @@ public class Liga extends Torneio implements gerenciarTorneio{
             tabela.add(linha);
         }
     }
-
+    
+    public void atualizarTabela(){
+        for(Partida p : this.partidas){
+            if(p.getVencedor().getId() != -1){
+                this.atualizarPontuacao(p.getVencedor(), p.getCapote());
+            }
+        }
+    }
 }  
 
     

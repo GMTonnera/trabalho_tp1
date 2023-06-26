@@ -21,7 +21,6 @@ public class EditarTorneio extends javax.swing.JFrame {
     public EditarTorneio() {
         initComponents();
         setLocationRelativeTo(null);
-    
         setup(); 
     }
     

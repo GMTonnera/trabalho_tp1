@@ -17,8 +17,8 @@ public class ParticipanteService {
     this.connect.createParticipante(participante);
   }   
 
-  public void findOneParticipante(int id) {
-    this.connect.findParticipante(id);
+  public Participante findOneParticipante(int id) {
+    return this.connect.findParticipante(id);
   }
 
   public ArrayList<Participante> findAllParticipante() {

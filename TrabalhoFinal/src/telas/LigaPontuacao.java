@@ -4,6 +4,13 @@
  */
 package telas;
 
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+import trabalhofinal.Participante;
+import trabalhofinal.TrabalhoFinal;
+import trabalhofinal.Liga;
+import trabalhofinal.ParticipanteService;
+
 /**
  *
  * @author guton
@@ -16,8 +23,27 @@ public class LigaPontuacao extends javax.swing.JFrame {
     public LigaPontuacao() {
         initComponents();
         setLocationRelativeTo(null);
+        this.setup();
     }
 
+    
+    public void setup(){
+        DefaultTableModel modelo = new DefaultTableModel(new Object[] {"Posição", "Nome", "Pontos", "Vitórias", "Capotes Aplicados"}, 0);
+        ArrayList<ArrayList<Integer>> tabela = ((Liga) TrabalhoFinal.currentTorneio).getTabela();
+        ParticipanteService ps = new ParticipanteService();
+        System.out.println(tabela.size());
+        for(int i = 0; i < tabela.size(); i++){
+            int id = tabela.get(i).get(1);
+            Object linha[] = new Object[]{i+1,
+                                          ps.findOneParticipante(id).getNome(),
+                                          tabela.get(i).get(2),
+                                          tabela.get(i).get(3),
+                                          tabela.get(i).get(4),
+                                        };
+            modelo.addRow(linha);
+        }
+        this.jTable1.setModel(modelo);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

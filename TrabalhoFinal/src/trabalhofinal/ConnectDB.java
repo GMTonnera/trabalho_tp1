@@ -6,7 +6,6 @@ package trabalhofinal;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-
 import java.sql.*;
 
 /**
@@ -155,23 +154,6 @@ public class ConnectDB {
         + "       ON UPDATE NO ACTION\n"
         + ");";
 
-    String LigaTable = "CREATE TABLE IF NOT EXISTS liga (\n"
-        + "torneio_id INTEGER,\n"
-        + "participante_id INTEGER,\n"
-        + "pontuacao INTEGER,\n"
-        + "partidasVencidas INTEGER,\n"
-        + "capotes INTEGER,\n"
-        + "PRIMARY KEY (participante_id, torneio_id),\n"
-        + "FOREIGN KEY (participante_id)\n"
-        + "   REFERENCES participante (id)\n"
-        + "       ON DELETE CASCADE\n"
-        + "       ON UPDATE NO ACTION,\n"
-        + "FOREIGN KEY (torneio_id)\n"
-        + "   REFERENCES torneio (id)\n"
-        + "       ON DELETE CASCADE\n"
-        + "       ON UPDATE NO ACTION\n"
-        + ");";
-
     try (
         Statement stmt = conn.createStatement()) {
       // create a new table
@@ -181,7 +163,6 @@ public class ConnectDB {
       stmt.execute(TorneioTable);
       stmt.execute(InscricaoTable);
       stmt.execute(CriarTorneioTable);
-      stmt.execute(LigaTable);
 
       conn.close();
     } catch (SQLException e) {
@@ -240,55 +221,6 @@ public class ConnectDB {
             System.out.println(e.getMessage());
         }
     }
-
-  public void updateTorneio(Torneio torneio) {
-    Connection conn = connect();
-
-    String sql = "UPDATE torneio SET " 
-      + "maxParticipantes = ?,"
-      + "minParticipantes = ?," 
-      + "nome = ?,"
-      + "descricao = ?,"
-      + "local = ?,"
-      + "regras = ?,"
-      + "numJogosPartida = ?,"
-      + "status = ?,"
-      + "dataInicio = ?,"
-      + "dataIncioInscricao = ?,"
-      + "periodoTorneio = ?,"
-      + "periodoInscricao = ?,"
-      + "tipo = ?,"
-      + "numPartidas = ?,"
-      + "partidaAtual = ?"
-      + "WHERE id = ?";
-
-      int tipo = torneio instanceof MataMata ? 0 : 1;
-      
-      try {
-          PreparedStatement pstmt = conn.prepareStatement(sql);
-          pstmt.setInt(1, torneio.getMaxParticipantes());
-          pstmt.setInt(2, torneio.getMinParticipantes());
-          pstmt.setString(3, torneio.getNome());
-          pstmt.setString(4, torneio.getDescricao());
-          pstmt.setString(5,torneio.getLocal());
-          pstmt.setString(6, torneio.getRegras());
-          pstmt.setInt(7, torneio.getNumJogosPartida());
-          pstmt.setInt(8, torneio.getStatusTorneio());
-          pstmt.setString(9, torneio.getDataInicio().toString());
-          pstmt.setString(10, torneio.getDataInicioInscricao().toString());
-          pstmt.setInt(11, torneio.getPeriodoTorneio());
-          pstmt.setInt(12, torneio.getPeriodoInscricao());
-          pstmt.setInt(13, tipo);
-          pstmt.setInt(14, torneio.getNumPartidas());
-          pstmt.setInt(15, torneio.getPartidaAtual());
-
-          pstmt.executeUpdate();
-   
-          conn.close();
-      } catch (SQLException e) {
-          System.out.println(e.getMessage());
-      }
-  }
 
   public Torneio findTorneio(int id) {
     Connection conn = connect();
@@ -542,6 +474,11 @@ public class ConnectDB {
     } catch (SQLException e) {
       System.out.println(e.getMessage());
     }
+  }
+
+  public static void resetDB() {
+    dropTables();
+    createTables();
   }
 
   public void createOrganizador(Organizador organizador) {
@@ -863,7 +800,7 @@ public class ConnectDB {
   public void deletePartida(int id) {
     Connection conn = connect();
 
-    String sql = "DELETE FROM TABLE partida WHERE id = ?";
+    String sql = "DELETE FROM partida WHERE id = ?";
 
     try {
       PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -922,129 +859,6 @@ public class ConnectDB {
     }
   }
 
-  public void criarLiga(int torneio_id, ArrayList<Integer> linha) {
-    Connection conn = connect();
-
-    String sql = "INSERT INTO liga("
-      + "torneio_id,"
-      + "participante_id,"
-      + "pontuacao,"
-      + "partidasVencidas,"
-      + "capotes"
-      + ") VALUES(?,?,?,?,?)";
-
-    try {
-      PreparedStatement pstmt = conn.prepareStatement(sql);
-      pstmt.setInt(1, torneio_id);
-      pstmt.setInt(2, linha.get(0));
-      pstmt.setInt(3, linha.get(1));
-      pstmt.setInt(4, linha.get(2));
-      pstmt.setInt(5, linha.get(3));
-
-      pstmt.executeUpdate();
-
-      conn.close();
-    } catch (SQLException e) {
-      System.out.println(e.getMessage());
-    }
-  }
-
-  public ArrayList<ArrayList<Integer>> findTabelaLiga(int torneio_id) {
-    Connection conn = connect();
-
-    ArrayList<ArrayList<Integer>> res = new ArrayList<>();
-
-    String sql = "SELECT * FROM liga WHERE torneio_id = ?";
-
-    try {
-      PreparedStatement pstmt = conn.prepareStatement(sql);
-      pstmt.setInt(1, torneio_id);
-
-      ResultSet rs = pstmt.executeQuery();
-
-      while(rs.next()) {
-        ArrayList<Integer> line = new ArrayList<>();
-
-        line.add(rs.getInt("participante_id"));
-        line.add(rs.getInt("pontuacao"));
-        line.add(rs.getInt("partidasVencidas"));
-        line.add(rs.getInt("capotes"));
-
-        res.add(line);
-      }
-
-      conn.close();
-    } catch (SQLException e) {
-      System.out.println(e.getMessage());
-    }
-
-    return res;
-  }
-
-  public void updateRowLiga(int torneio_id, ArrayList<Integer> line) {
-    Connection conn = connect();
-
-    String sql = "UPDATE liga SET"
-      + "pontuacao = ?,"
-      + "partidasVencidas = ?,"
-      + "capotes = ?,"
-      + "WHERE torneio_id = ? AND participante_id = ?";
-
-    try {
-      PreparedStatement pstmt = conn.prepareStatement(sql);
-      pstmt.setInt(1, line.get(1));
-      pstmt.setInt(2, line.get(2));
-      pstmt.setInt(3, line.get(3));
-      pstmt.setInt(4, torneio_id);
-      pstmt.setInt(5, line.get(0));
-
-      pstmt.executeUpdate();
-
-      conn.close();
-    } catch (SQLException e) {
-      System.out.println(e.getMessage());
-    }
-  }
-
-  public void deleteRowLiga(int torneio_id, int participante_id) {
-    Connection conn = connect();
-
-    String sql = "DELETE FROM TABLE liga WHERE torneio_id = ? AND participante_id";
-
-    try {
-      PreparedStatement pstmt = conn.prepareStatement(sql);
-      pstmt.setInt(1, torneio_id);
-      pstmt.setInt(2, participante_id);
-
-      pstmt.executeUpdate();
-
-      conn.close();
-    } catch (SQLException e) {
-      System.out.println(e.getMessage());
-    }
-  }
-
-  public void deleteLiga(int torneio_id) {
-    Connection conn = connect();
-
-    String sql = "DELETE FROM TABLE liga WHERE torneio_id = ?";
-
-    try {
-      PreparedStatement pstmt = conn.prepareStatement(sql);
-      pstmt.setInt(1, torneio_id);
-
-      pstmt.executeUpdate();
-
-      conn.close();
-    } catch (SQLException e) {
-      System.out.println(e.getMessage());
-    }
-  }
-
-  public static void resetDB() {
-    dropTables();
-    createTables();
-  }
 
   /**
    * @param args the command line arguments
