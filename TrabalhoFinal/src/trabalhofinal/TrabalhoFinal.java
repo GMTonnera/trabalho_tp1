@@ -255,6 +255,7 @@ public class TrabalhoFinal {
         }
     }
     
+    
     private static void inscreverParticipantesLiga(){
         ParticipanteService ps = new ParticipanteService();
         for(int i = 10; i < 20; i++){
@@ -286,16 +287,19 @@ public class TrabalhoFinal {
                     ((Liga) t).criarPartidas();
                     ((Liga) t).inicializarTabela();
                 }
-            } else if(t.getStatusTorneio() >= 2 && t.getPartidaAtual() == 8 && t instanceof MataMata){
+            } else if(t.getStatusTorneio() == 2 && t.getPartidaAtual() == 8 && t instanceof MataMata){
                 ((MataMata) t).refazerParticipantesAtuais();
                 ((MataMata) t).generateQuartasFinal();
-            } else if(t.getStatusTorneio() >= 2 && t.getPartidaAtual() == 12 && t instanceof MataMata){
+            } else if(t.getStatusTorneio() == 2 && t.getPartidaAtual() == 12 && t instanceof MataMata){
                 System.out.println("ok");
                 ((MataMata) t).refazerParticipantesAtuais();
                 ((MataMata) t).generateSemiFinal();
-            } else if(t.getStatusTorneio() >= 2 && t.getPartidaAtual() == 14 && t instanceof MataMata){
+            } else if(t.getStatusTorneio() == 2 && t.getPartidaAtual() == 14 && t instanceof MataMata){
                 ((MataMata) t).refazerParticipantesAtuais();
                 ((MataMata) t).generateFinal();
+            } else if(t.getStatusTorneio() == 2 && t instanceof Liga){
+                    ((Liga) t).inicializarTabela();
+                    ((Liga) t).atualizarTabela();
             }
             
             for(Partida p : t.getPartidas()){

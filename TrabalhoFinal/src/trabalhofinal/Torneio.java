@@ -162,6 +162,7 @@ public class Torneio {
     }
     
     public void setPartidas(ArrayList<Partida> partidas){
+        this.partidaAtual = partidas.size();
         this.partidas = partidas;
     }
     

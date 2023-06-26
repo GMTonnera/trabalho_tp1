@@ -13,8 +13,8 @@ public class Partida {
     private ArrayList<Integer> resultado;
     private boolean capote;
     private Participante p1, p2;
-    private Participante vencedor;
-    private Participante perdedor;
+    private Participante vencedor = new Participante(-1);
+    private Participante perdedor = new Participante(-1);
     
     Partida(){
         this.resultado = new ArrayList<>();
@@ -23,8 +23,6 @@ public class Partida {
     
     Partida(int id, Participante p1,  Participante p2){
         this.id = id;
-        this.resultado = new ArrayList<>();
-        this.capote = false;
         this.p1 = p1;
         this.p2 = p2;
     }
@@ -37,7 +35,7 @@ public class Partida {
         return resultado;
     }
 
-    public boolean isCapote() {
+    public boolean getCapote() {
         return capote;
     }
 
@@ -55,12 +53,14 @@ public class Partida {
 
     public void setResultado(ArrayList<Integer> resultado) {
         this.resultado = resultado;
-        if(this.resultado.get(0) > this.resultado.get(1)){
-            this.vencedor = this.p1;
-            this.perdedor = this.p2;
-        } else{
-            this.vencedor = this.p2;
-            this.perdedor = this.p1;
+        if(this.resultado.get(1) != this.resultado.get(0)){
+            if(this.resultado.get(0) > this.resultado.get(1)){
+                this.vencedor = this.p1;
+                this.perdedor = this.p2;
+            } else if(this.resultado.get(0) < this.resultado.get(1)){
+                this.vencedor = this.p2;
+                this.perdedor = this.p1;
+            }
         }
     }
 
@@ -77,10 +77,29 @@ public class Partida {
     }
     
     public Participante getVencedor(){
+        if(this.vencedor.getId() == -1 && this.resultado.get(1) != this.resultado.get(0)){
+            if(this.resultado.get(0) > this.resultado.get(1)){
+                this.vencedor = this.p1;
+                this.perdedor = this.p2;
+            } else{
+                this.vencedor = this.p2;
+                this.perdedor = this.p1;
+            }
+        }
         return this.vencedor;
     }
     
     public Participante getPerdedor(){
+        if(this.perdedor.getId() == -1 && this.resultado.get(1) != this.resultado.get(0)){
+            if(this.resultado.get(0) > this.resultado.get(1)){
+                this.vencedor = this.p1;
+                this.perdedor = this.p2;
+            } else{
+                this.vencedor = this.p2;
+                this.perdedor = this.p1;
+            }
+        }
+        
         return this.perdedor;
     }
     
