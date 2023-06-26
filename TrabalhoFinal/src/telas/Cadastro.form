@@ -159,7 +159,7 @@
           <SubComponents>
             <Component class="javax.swing.JTextField" name="txtEmail">
               <Properties>
-                <Property name="text" type="java.lang.String" value="robertinho@gmail.com"/>
+                <Property name="text" type="java.lang.String" value="Ex: robertinho@gmail.com"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtEmailActionPerformed"/>
@@ -177,7 +177,7 @@
             </Component>
             <Component class="javax.swing.JLabel" name="lblLogin">
               <Properties>
-                <Property name="text" type="java.lang.String" value="J&#xe1; tem conta? Clique aqui!"/>
+                <Property name="text" type="java.lang.String" value="J&#xe1; tem conta? clique aqui"/>
               </Properties>
               <Events>
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lblLoginMouseClicked"/>
@@ -212,7 +212,7 @@
             </Component>
             <Component class="javax.swing.JTextField" name="txtCurso">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Ci&#xea;ncia da Computa&#xe7;&#xe3;o"/>
+                <Property name="text" type="java.lang.String" value="Ex: Ci&#xea;ncia da Computa&#xe7;&#xe3;o"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JComboBox" name="cbxTipo">

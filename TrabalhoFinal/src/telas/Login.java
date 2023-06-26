@@ -47,7 +47,7 @@ public class Login extends javax.swing.JFrame {
 
         pnlLogin.setBorder(javax.swing.BorderFactory.createTitledBorder("Login"));
 
-        txtEmail.setText("robertinho@gmail.com");
+        txtEmail.setText("Ex: robertinho@gmail.com");
         txtEmail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtEmailActionPerformed(evt);

@@ -64,7 +64,7 @@ public class LTorneios extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel1.setText("Torneios Abertos");
+        jLabel1.setText("Lista de Torneios ");
 
         tblTorneios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -108,7 +108,7 @@ public class LTorneios extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(285, 285, 285)
                 .addComponent(jLabel1)
-                .addContainerGap(301, Short.MAX_VALUE))
+                .addContainerGap(297, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane2)

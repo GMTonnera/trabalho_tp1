@@ -27,9 +27,12 @@ public class TelaTorneioInfo extends javax.swing.JFrame {
     }
     
     public void setup(){
-        if(TrabalhoFinal.currentTorneio.getStatusTorneio() < 2){
-            this.btnPontuacao.setVisible(false);
-            this.btnEditarTorneio.setVisible(false);
+        if(TrabalhoFinal.currentTorneio.getStatusTorneio() != 2){
+           this.btnEditarTorneio.setVisible(false);
+           if(TrabalhoFinal.currentTorneio.getStatusTorneio() < 2){
+                this.btnPontuacao.setVisible(false);
+           }
+            
         }
         
         

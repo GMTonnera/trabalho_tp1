@@ -265,10 +265,10 @@ public class TelaPerfil extends javax.swing.JFrame {
             this.lblTipoU.setText("Jogador");
             this.jLabel9.setText(String.format("%d",((Participante) TrabalhoFinal.login).getNumTorneiosJogados()));
             this.jLabel10.setText(String.format("%d",((Participante) TrabalhoFinal.login).getNumTorneiosVencidos()));
-            this.jLabel11.setText(String.format("%d",((Participante) TrabalhoFinal.login).getCapotesRecebidos()));
-            this.jLabel12.setText(String.format("%d",((Participante) TrabalhoFinal.login).getCapotesRecebidos()));
-            this.jLabel13.setText(String.format("%d",((Participante) TrabalhoFinal.login).getNumVitorias()));
-            this.jLabel14.setText(String.format("%d",((Participante) TrabalhoFinal.login).getNumDerrotas()));
+            this.jLabel13.setText(String.format("%d",((Participante) TrabalhoFinal.login).getCapotesRecebidos()));
+            this.jLabel14.setText(String.format("%d",((Participante) TrabalhoFinal.login).getCapotesRecebidos()));
+            this.jLabel11.setText(String.format("%d",((Participante) TrabalhoFinal.login).getNumVitorias()));
+            this.jLabel12.setText(String.format("%d",((Participante) TrabalhoFinal.login).getNumDerrotas()));
             this.jLabel8.setText("0");
             
             

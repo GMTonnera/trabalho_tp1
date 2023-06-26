@@ -58,7 +58,6 @@ public class EditarTorneio extends javax.swing.JFrame {
         lblNumeroJogoNum = new javax.swing.JLabel();
         btnAdicionarResultado = new javax.swing.JButton();
         ckxCapote = new javax.swing.JCheckBox();
-        btnEncerrar = new javax.swing.JButton();
         lblNumPartidaAtual = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -90,8 +89,6 @@ public class EditarTorneio extends javax.swing.JFrame {
         });
 
         ckxCapote.setText("Capote");
-
-        btnEncerrar.setText("Encerrar Torneio");
 
         lblNumPartidaAtual.setText("jLabel1");
 
@@ -127,9 +124,6 @@ public class EditarTorneio extends javax.swing.JFrame {
                         .addGap(406, 406, 406)
                         .addComponent(ckxCapote))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(378, 378, 378)
-                        .addComponent(btnEncerrar))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(319, 319, 319)
                         .addComponent(lblTitulo)))
                 .addContainerGap(272, Short.MAX_VALUE))
@@ -155,9 +149,7 @@ public class EditarTorneio extends javax.swing.JFrame {
                 .addComponent(ckxCapote)
                 .addGap(36, 36, 36)
                 .addComponent(btnAdicionarResultado)
-                .addGap(121, 121, 121)
-                .addComponent(btnEncerrar)
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addContainerGap(180, Short.MAX_VALUE))
         );
 
         pack();
@@ -239,7 +231,6 @@ public class EditarTorneio extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdicionarResultado;
-    private javax.swing.JButton btnEncerrar;
     private javax.swing.JCheckBox ckxCapote;
     private javax.swing.JLabel lblNomeJogadores;
     private javax.swing.JLabel lblNumPartidaAtual;

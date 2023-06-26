@@ -57,10 +57,6 @@
                       <Component id="ckxCapote" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="378" max="-2" attributes="0"/>
-                      <Component id="btnEncerrar" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="319" max="-2" attributes="0"/>
                       <Component id="lblTitulo" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -92,9 +88,7 @@
               <Component id="ckxCapote" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
               <Component id="btnAdicionarResultado" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="121" max="-2" attributes="0"/>
-              <Component id="btnEncerrar" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="36" max="32767" attributes="0"/>
+              <EmptySpace pref="180" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -151,11 +145,6 @@
     <Component class="javax.swing.JCheckBox" name="ckxCapote">
       <Properties>
         <Property name="text" type="java.lang.String" value="Capote"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JButton" name="btnEncerrar">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Encerrar Torneio"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblNumPartidaAtual">

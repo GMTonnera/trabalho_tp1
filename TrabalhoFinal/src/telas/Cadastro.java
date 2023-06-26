@@ -52,7 +52,7 @@ public class Cadastro extends javax.swing.JFrame {
 
         pnlCadastro.setBorder(javax.swing.BorderFactory.createTitledBorder("Cadastro"));
 
-        txtEmail.setText("robertinho@gmail.com");
+        txtEmail.setText("Ex: robertinho@gmail.com");
         txtEmail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtEmailActionPerformed(evt);
@@ -63,7 +63,7 @@ public class Cadastro extends javax.swing.JFrame {
 
         lblSenha.setText("Senha");
 
-        lblLogin.setText("Já tem conta? Clique aqui!");
+        lblLogin.setText("Já tem conta? clique aqui");
         lblLogin.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblLoginMouseClicked(evt);
@@ -89,7 +89,7 @@ public class Cadastro extends javax.swing.JFrame {
 
         lblCurso.setText("Curso");
 
-        txtCurso.setText("Ciência da Computação");
+        txtCurso.setText("Ex: Ciência da Computação");
 
         cbxTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "jogador", "organizador" }));
 

@@ -31,7 +31,6 @@ public class LigaPontuacao extends javax.swing.JFrame {
         DefaultTableModel modelo = new DefaultTableModel(new Object[] {"Posição", "Nome", "Pontos", "Vitórias", "Capotes Aplicados"}, 0);
         ArrayList<ArrayList<Integer>> tabela = ((Liga) TrabalhoFinal.currentTorneio).getTabela();
         ParticipanteService ps = new ParticipanteService();
-        System.out.println(tabela.size());
         for(int i = 0; i < tabela.size(); i++){
             int id = tabela.get(i).get(0);
             Object linha[] = new Object[]{i+1,
