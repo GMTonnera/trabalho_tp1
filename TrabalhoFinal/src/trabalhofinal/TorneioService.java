@@ -40,4 +40,8 @@ public class TorneioService {
   public ArrayList<Partida> findAllTorneioPartida(int torneio_id) {
     return this.db.findAllTorneioPartidas(torneio_id);
   }
+
+  public void updateTorneio(Torneio t) {
+    this.db.updateTorneio(t);
+  }
 }

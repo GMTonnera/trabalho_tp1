@@ -362,6 +362,52 @@ public class ConnectDB {
     return res;
   }
 
+  public void updateTorneio(Torneio t) {
+    Connection conn = connect();
+
+    String sql = "UPDATE torneio SET " 
+      + "nome = ?," 
+      + "local = ?," 
+      + "regras = ?,"
+      + "descricao = ?,"
+      + "dataInicio = ? "
+      + "dataInicioInscricao = ?,"
+      + "status = ?,"
+      + "periodoTorneio = ?,"
+      + "periodoInscricao = ?,"
+      + "numJogosPartida = ?,"
+      + "maxParticipantes = ?,"
+      + "minParticipantes = ?,"
+      + "numPartidas = ?,"
+      + "partidaAtual = ? "
+      + "WHERE id = ?";
+    
+     try {
+       PreparedStatement pstmt = conn.prepareStatement(sql);
+
+       pstmt.setString(1, t.getNome());
+       pstmt.setString(2, t.getLocal());
+       pstmt.setString(3, t.getRegras());
+       pstmt.setString(4, t.getDescricao());
+       pstmt.setString(5, t.getDataInicio().toString());
+       pstmt.setString(6, t.getDataInicioInscricao().toString());
+       pstmt.setInt(7, t.getStatusTorneio());
+       pstmt.setInt(8, t.getPeriodoTorneio());
+       pstmt.setInt(9, t.getPeriodoInscricao());
+       pstmt.setInt(10, t.getNumJogosPartida());
+       pstmt.setInt(11, t.getMaxParticipantes());
+       pstmt.setInt(12, t.getMinParticipantes());
+       pstmt.setInt(13, t.getNumPartidas());
+       pstmt.setInt(14, t.getPartidaAtual());
+
+       pstmt.executeUpdate();
+
+       conn.close();
+     } catch(SQLException e) {
+       System.out.println(e.getMessage());
+     }
+  }
+
   public ArrayList<Participante> findAllTorneioParticipante(int torneio_id) {
     Connection conn = connect();
 
