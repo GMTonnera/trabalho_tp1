@@ -12,6 +12,103 @@ import java.sql.*;
  *
  * @author Vini
  */
+/*
+CLASSE ConnectDB --> Classe usada para faezr as interações com o banco de dados.
+
+    1. MÉTODO connect: Método que faz a conexão com o banco de dados e retorna um 
+objeto Connection para que outras classe possam acessar o banco de dados;
+
+    2. MÉTODO dropTables: Método utilizado para realizar a operação SQL Drop em 
+todas as tables do banco de dados;
+
+    3. MÉTODO createTables: Método utilizado para criar todas as tabelas do banco
+de dados;
+
+    4. MÉTODO insertTorneio: Método utilizado para inserir um novo objeto da
+classe Torneio na table Torneio do banco de dados;
+
+    5. MÉTODO findTorneio: Método utilizado para achar um torneio com um id
+específico no banco de dados. Caso o tornio não seja encontrado, o método 
+retorna um objeto Torneio instanciado pelo contrutor padrão da classe;
+
+    6. MÉTODO finAllTorneio: Método utilizado para acessar todos os torneios
+presentes no banco de dados. Retorna uma ArrayList<Torneio>;
+    
+    7. MÉTODO updateTorneio: Método utilizado para atualizar um objeto Torneio
+presente na tabela Torneio do banco de dados;
+    
+    8. MÉTODO findAllTorneioParticipante: Método que retorna uma
+ArrayList<Participante> contendo todos os participantes de um dado torneio;
+
+    9. MÉTODO findAllTorneioPartidas:  Método que retorna uma ArrayList<Partida>
+contendo todas as partidas de um determinado torneio;
+
+    10. MÉTODO inscreverParticipante: Método responsável por armazenar a inscrição
+de uma participante em um torneio no banco de dados;
+
+    11. MÉTODO deleteTorneio: Método resposável por deletar um determinado torneio
+do banco de dados;
+
+    12. MÉTODO resestDB: Método resposável por resetar o banco de dados, recriando
+as tabelas;
+
+    13. MÉTODO createOrganizador: Armazena um novo objeto Organizador no banco de 
+dados;
+
+    14. MÉTODO findOrganizador: Método responsável por achar um determiando 
+Organizador no banco de dados. Caso não seja exista, retorna um objeto 
+Organizador instanciado pelo construtor padrão;
+
+    15. MÉTODO  findAllOrganizador: Método responsável por retornar uma 
+ArrayList<Organiador> contendo todos os organizadores cadastrados no banco de
+dados;
+    
+    16. MÉTODO updateOrganizador: Método responsável por modificar um organizador 
+cadastrado no bando de dados;
+
+    17. MÉTODO deleteOrganizador: Método responsável por apagar do banco de dados
+um determinado organizador;
+
+    18. MÉTODO createParticipante: Método responsável por armazenar um novo 
+Participante no banco de dados;
+
+    19. MÉTODO findParticipante: Método responsável por achar um determiando 
+Participante no banco de dados. Caso não seja exista, retorna um objeto 
+Participante instanciado pelo construtor padrão;
+
+    20. MÉTODO findAllParticipante: Método responsável por retornar uma 
+ArrayList<Participante> contendo todos os participantes cadastrados no banco de
+dados;
+    
+    21. MÉTODO updateParticipante: Método responsável por modificar um participante 
+cadastrado no bando de dados;
+    
+    22. MÉTODO deleteParticipante: Método responsável por apagar do banco de dados
+um determinado Participante;
+
+    23. MÉTODO createPartida: Método responsável por armazenar uma nova Partida no 
+banco de dados;
+
+    MÉTODO findPartida: Método responsável por achar uma determianda Partida no
+banco de dados. Caso não seja exista, retorna um objeto Partida instanciado pelo
+construtor padrão;
+
+    24. MÉTODO updatePartidaResultado: Método responsável por atualizar o resultado
+de retornar uma Partida cadastrada no banco de dados;
+    
+    25. MÉTODO deletePartida: Método responsável por apagar do banco de dados
+uma determinada Partida;
+
+    26. MÉTODO inscreverEmTorneio: Inscreve um participante em um torneio;
+
+    27. MÉTODO criarTorneio: Cria um torneio;
+*/
+
+
+
+
+
+
 public class ConnectDB {
   public static Connection connect() {
     Connection conn = null;
@@ -480,7 +577,6 @@ public class ConnectDB {
 
     return res;
   }
-
 
   public void inscreverParticipante(int torneio_id, int participante_id) {
     Connection conn = connect();

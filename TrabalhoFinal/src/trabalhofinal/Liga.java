@@ -10,6 +10,50 @@ import java.util.Collections;
  *
  * @author guton
  */
+
+/*
+CLASSE LIGA --> Classe filha da classe Torneio a qual implmenta a interface
+                gerenciarTorneio. Responsável por simiular um tornio do tipo
+                liga, no qual cada participante uma vez contra os outros
+                participantes, o número mínimo de participantes é 10, o máximo
+                é 20. Ganha a Liga o participante que obtiver o maior número de
+                pontos. Os pontos são adquiridos por vitórias em partidas. Cada
+                partida garante 3 pontos ao vencedor. Em caso de empate, os
+                critérios de desempate são número de vitórias e número de 
+                capotes aplicados, nessa ordem.
+
+
+    ATRIBUTO tabela: Variável privada do tipo ArrayList<ArrayList<Integer>> 
+responsável por armazenar a pontuação do torneio e a posiçãod e cada
+participante.
+
+
+    MÉTODO Liga(): Construtor Padrão;
+    
+    MÉTODO Liga(String nome, String descricao, ...): Construtor que incializa as
+variáveis da classe pai e a variável tabela;
+    
+    MÉTODO setTabela: Atribui um novo valor a variável tabela;
+    
+    MÉTODO setResultadoPartida: Atribui um resultado a partida atual do torneio;
+
+    MÉTODO atualizarPontuacao: Atualiza a variável tabela com o resultado de uma
+partida;
+    
+    MÉTODO getProximaPartida: Retorna a próxima partida do torneio;
+    
+    MÉTODO getCampeao: Retorna o campeão do Torneio;
+
+    MÉTODO criarPartidas: Cria todas as partidas do Torneio e ordena
+aleatoriamente as partidas;
+
+    MÉTODO inicializarTabela: Incializa a varável tabela com linhas com valores
+zerados;
+
+    MÉTODO atualizarTabela: Atualiza a tabela com os resultado das partidas que
+já aconteceream;
+
+*/
 public class Liga extends Torneio implements gerenciarTorneio{
     private ArrayList<ArrayList<Integer>> tabela = new ArrayList();
     
@@ -38,6 +82,8 @@ public class Liga extends Torneio implements gerenciarTorneio{
         p.setCapote(capote);
         if(this.partidaAtual < this.numPartidas){
             this.partidaAtual++;
+            TorneioService ts = new TorneioService();
+            ts.updateTorneio(this);
         }
         this.atualizarPontuacao(p.getVencedor(), capote);
     

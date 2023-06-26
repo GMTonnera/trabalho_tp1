@@ -14,6 +14,110 @@ import java.util.regex.Pattern;
  * @author guton
  */
 
+/*
+CLASSE TrabalhoFinal --> Classe main do projeto. Para iniciar o aplicativo, 
+                         executar o método main.
+    
+   
+    ATRIBUTO login: Variável privada do tipo Usuari a qual armazena o usuário
+logado no aplicativo;
+    
+    ATRIBUTO currentTornamentId: Variável privada do tipo int a qual armazena o
+id do próximo torneio a ser criado;
+    
+    ATRIBUTO currentOrganizadorId: Variável privada do tipo int a qual armazena
+o id do próximo organizador a ser cadastrado;
+    
+    ATRIBUTO currentParticipanteId: Variável privada do tipo int a qual armazena
+o id do próximo participante a ser cadastrado;
+
+    ATRIBUTO currentTorneio: Variável privada do tipo Torneio a qual armazena o 
+Torneio que o usuário está visualizando informações mais detalhadas;
+    
+    ATRIBUTO currentPartidaId: Variável privada do tipo int a qual armazena o 
+id da próxima partida a ser criada;
+    
+    ATRIBUTO torneios: Variável privada do tipo ArrayList<Torneio> a qual
+armazena todos os torneios do banco de dados;
+    
+    ATRIBUTO participantes: Variável privada do tipo ArrayList<Participante> a
+qual armazena todos os participantes do banco de dados;
+
+    ATRIBUTO organizadores: Variável privada do tipo ArrayList<Organizadores> a
+qual armazena todos os organizadores do banco de dados;
+
+    
+    MÉTODO main: Executa a aplicação;
+    
+    MÉTODO createUsuario: Método que cria uma instância da classe Participante 
+ou da classe Organizador e a coloca no banco de dados;
+    
+    MÉTODO checkLogin: Verifica se o email e senha pertencem a um usuário;
+    
+    MÉTODO checkEmail: Verifica se o email de cadastro já foi cadastrado por
+outro usuário;
+    
+    MÉTODO login: Realiza o login;
+    
+    MÉTODO criarTorneio:Cria um objeto da classe MataMata ou Liga e o armazena
+no banco de dados;
+    
+    MÉTODO setCurrentTorneio: Armazena o torneio que o usuário está
+visualizando/editando;
+    
+    MÉTODO inscricao: Realiza a inscrição de um Participante no torneio
+armazenado;
+    
+    MÉTODO isInscrito: Verifica se um Participante já está inscrito em um
+torneio;
+    
+    
+    MÉTODO cancelarInscricao: Cancela a inscrição de uma Participante no torneio
+armazenado;
+    
+    MÉTODO adicionarUsuarios: Método que cria n Participantes e m Organizadores
+e os armazena no bancode de dados;
+
+    MÉTODO criarTorneios: Método que cria n torneios do tipo MataMata e m do
+tipo Liga e os armazena no banco de dados;
+    
+    MÉTODO inscreverParticipantesMataMata: Inscreve aleatoriamente Participantes
+nos Torneios do tipo Mata-mata;
+    
+    MÉTODO inscreverParticipantesLiga: Inscreve aleatoriamente Participantes nos
+Torneios do tipo Liga();    
+    
+    
+    MÉTODO gerarListaTorneios: Gera a lista de torneios, atualiza o estados dos
+torneios e cria as partidas dos torneios;
+    
+    
+    MÉTODO gerarListaParticipantes: Gera a lista de participantes e atualiza o
+id do próximo participante a ser criado;
+    
+    MÉTODO gerarListaOrganizadores: Gera a lista de organizadores e atualiza o 
+id do próximo organizador a ser criado;
+    
+    
+    MÉTODO validarEmail: Verifica se o email é válido;    
+    
+    MÉTODO patternMatches: Verifica se o email segue o padrão regex;
+    
+    MÉTODO resultadosPartidas: Atribui resultados aleatórios a partidas do banco
+de dados;    
+    
+    MÉTODO deletePartidas: deleta partidas do banco de dados pelo id;
+    
+    MÉTODO atualizarStatusParticipante: Método usado para atualizar as
+estatísticas dos participantes que estão no banco de dados;
+
+    MÉTODO atualizarStatusOrganizador: Método usado para atualizar as
+estatísticas dos organizadores que estão no banco de dados;
+    
+    MÉTODO getIdPartida: Método usado para adquirir o id da próxima a ser 
+criada.
+*/
+
 
 public class TrabalhoFinal {
 
@@ -23,7 +127,7 @@ public class TrabalhoFinal {
     public static Usuario login;
     public static int currentTornamentId, currentOrganizadorId, currentParticipanteId;
     public static Torneio currentTorneio = new Torneio(-1);
-    public static int currentPartidaId = 0;
+    public static int currentPartidaId = -1;
     public static ArrayList<Torneio> torneios = new ArrayList();
     public static ArrayList<Participante> participantes = new ArrayList();
     public static ArrayList<Organizador> organizadores = new ArrayList();
@@ -34,9 +138,12 @@ public class TrabalhoFinal {
         
         // TrabalhoFinal.deletePartidas();
         TrabalhoFinal.gerarListaTorneios();
+        TrabalhoFinal.getIdPartida();
         TrabalhoFinal.gerarListaParticipantes();
         TrabalhoFinal.gerarListaOrganizadores();
-        TrabalhoFinal.resultadosPartidas();
+        // TrabalhoFinal.atualizarStatusOrganizador();
+        // TrabalhoFinal.resultadosPartidas();
+        // TrabalhoFinal.atualizarStatusParticipante();
         
         // adicionarUsuarios(100, 10);
         // criarTorneios(10, 10);
@@ -127,6 +234,7 @@ public class TrabalhoFinal {
                                     String regras, Organizador organizador, int tipo){
         
         TorneioService ts = new TorneioService();
+        PartidaService ps = new PartidaService();
         
         if(tipo == 0){
             MataMata m = new MataMata(nome, descricao, local, dataInicio, dataInicioInscricao, periodoTorneio, periodoInscricao, regras, TrabalhoFinal.currentTornamentId, organizador);
@@ -154,6 +262,8 @@ public class TrabalhoFinal {
     
     // Realiza a inscrição de um Participante no torneio armazenado
     public static void inscricao(){
+        ParticipanteService ps = new ParticipanteService();
+        ps.inscreverParticipante(TrabalhoFinal.currentTorneio.getId(), TrabalhoFinal.login.getId());
         TrabalhoFinal.currentTorneio.addParticipante((Participante) TrabalhoFinal.login);
     }
     
@@ -279,31 +389,38 @@ public class TrabalhoFinal {
             t.setParticipantes(ts.findAllTorneioParticipante(t.getId()));
             t.atualizarEstado();
             t.setPartidas(ts.findAllTorneioPartida(t.getId()));
-            
-            if(t.getStatusTorneio() == 2 && t.getPartidaAtual() == 0){
+             if(t.getStatusTorneio() == 2 && t.getPartidaAtual() == 0 && t.getPartidas().isEmpty()){
                 if(t instanceof MataMata){
                     ((MataMata) t).generateOitavasFinal();
-                } else {
+                } else{
                     ((Liga) t).criarPartidas();
                     ((Liga) t).inicializarTabela();
                 }
-            } else if(t.getStatusTorneio() >= 2 && t.getPartidaAtual() == 8 && t instanceof MataMata){
+                for(Partida p : t.getPartidas()){
+                    ps.createPartida(p, t.getId());
+                }
+            } else if(t.getStatusTorneio() == 2 && t.getPartidaAtual() == 8 && t instanceof MataMata && t.getPartidas().get(t.getPartidaAtual()-1).getVencedor().getId() != -1){
                 ((MataMata) t).refazerParticipantesAtuais();
                 ((MataMata) t).generateQuartasFinal();
-            } else if(t.getStatusTorneio() == 2 && t.getPartidaAtual() == 12 && t instanceof MataMata){
+                for(int i = 0; 8 < 12; i++){
+                    ps.createPartida(t.getPartidas().get(i), t.getId());
+                }
+            } else if(t.getStatusTorneio() == 2 && t.getPartidaAtual() == 12 && t instanceof MataMata && t.getPartidas().get(t.getPartidaAtual()-1).getVencedor().getId() != -1){
                 ((MataMata) t).refazerParticipantesAtuais();
                 ((MataMata) t).generateSemiFinal();
-            } else if(t.getStatusTorneio() == 2 && t.getPartidaAtual() == 14 && t instanceof MataMata){
+                for(int i = 0; 12 < 14; i++){
+                    ps.createPartida(t.getPartidas().get(i), t.getId());
+                }
+            } else if(t.getStatusTorneio() == 2 && t.getPartidaAtual() == 14 && t instanceof MataMata && t.getPartidas().get(t.getPartidaAtual()-1).getVencedor().getId() != -1){
                 ((MataMata) t).refazerParticipantesAtuais();
                 ((MataMata) t).generateFinal();
+                ps.createPartida(t.getPartidas().get(14), t.getId());
             } else if(t.getStatusTorneio() >= 2 && t instanceof Liga){
                 ((Liga) t).inicializarTabela();
                 ((Liga) t).atualizarTabela();
             }
             
-            for(Partida p : t.getPartidas()){
-                ps.createPartida(p, t.getId());
-            }
+            
         }
     }
     
@@ -372,4 +489,74 @@ public class TrabalhoFinal {
         }
     }
     
+    private static void atualizarStatusParticipante(){
+        ParticipanteService ps = new ParticipanteService();
+        for(Participante p : TrabalhoFinal.participantes){
+            int nTorneios = 0, nTorneiosV = 0, nVit = 0, nDer = 0, nCapA = 0, nCapR = 0;
+            for(Torneio t : TrabalhoFinal.torneios){
+                if(t instanceof MataMata){
+                    if(p.getId() == ((MataMata)t).getCampeao().getId()){
+                        nTorneiosV++;
+                    }
+                } else{
+                    if(p.getId() == ((Liga)t).getCampeao().getId()){
+                        nTorneiosV++;
+                    }
+                }
+                for(Participante p2 : t.getParticipantes()){
+                    if(p.getId() == p2.getId()){
+                        nTorneios++;
+                        break;
+                    }
+                }
+                
+                for(Partida partida : t.getPartidas()){
+                    if(partida.getVencedor().getId() == p.getId()){
+                        nVit++;
+                        if(partida.getCapote()){
+                            nCapA++;
+                        }
+                    } else if(partida.getPerdedor().getId() == p.getId()){
+                        nDer++;
+                        if(partida.getCapote()){
+                            nCapR++;
+                        }
+                    }
+                }
+            }
+            p.setNumTorneiosJogados(nTorneios);
+            p.setNumTorneiosVencidos(nTorneiosV);
+            p.setNumVitorias(nVit);
+            p.setNumDerrotas(nDer);
+            p.setCapotesAplicados(nCapA);
+            p.setCapotesRecebidos(nCapR);
+            ps.updateParticipante(p);
+        }
+    }
+    
+    private static void atualizarStatusOrganizador(){
+        OrganizadorService os = new OrganizadorService();
+        for(Organizador o : TrabalhoFinal.organizadores){
+            int n = 0;
+            for(Torneio t : TrabalhoFinal.torneios){
+                if(o.getId() == t.getOrganizador().getId()){
+                    n++;
+                }
+            }
+            o.setNumTorneiosCriados(n);
+            os.updateOrganizador(o);
+        }
+        
+    }
+    
+    private static void getIdPartida(){
+        for(Torneio t : TrabalhoFinal.torneios){
+            for(Partida p : t.getPartidas()){
+                if(p.getId() > TrabalhoFinal.currentPartidaId){
+                    TrabalhoFinal.currentPartidaId = p.getId();
+                }
+            }
+        }
+        TrabalhoFinal.currentPartidaId++;
+    }
 }   

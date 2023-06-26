@@ -10,6 +10,37 @@ import java.util.ArrayList;
  *
  * @author Vini
  */
+
+/*
+CLASSE TorneioService --> Classe responsável por fornecer servições para 
+                          alterar/criar objetos da Classe Torneio no banco de
+                          dados.
+    
+
+    ATRIBUTO connect: Variável do tipo ConnectDB responsável por realizar a
+conexão com o banco de dados;
+
+
+    MÉTODO createTorneio: Método responsável por criar um Torneio;
+    
+    MÉTODO findOneTorneio: Método responsável por achar um Torneio no banco de
+dados dado um id;
+
+    MÉTODO findAllTorneio: Método responsável por achar todos os objetos Torneio
+presentes no banco de dados;    
+
+    MÉTODO deleteTorneio: Deleta um Torneio do banco de dados dado um id;
+
+    MÉTODO findAllTorneioParticipante: Acha todos os Participantes de um torneio
+do banco de dados dado um id;
+
+    MÉTODO findAllTorneioPartida: Acha todos as Partidas de um torneio do banco
+de dados dado um id;
+    
+    MÉTODO updateTorneio: Altera as informações de um Torneio do banco de dados dado
+um id;
+
+*/
 public class TorneioService {
   ConnectDB db = new ConnectDB();
 

@@ -12,6 +12,51 @@ import java.util.Collections;
  *
  * @author guton
  */
+
+/*
+CLASSE MataMata --> Classe filha da Classe Torneio a qual implmenta a Interface
+                    gerenciarTorneio. Responsável por simular um torneio do tipo
+                    mata-mata, no qual cada participante enfrenta outros 
+                    participates em partidas eliminatórias, nas quais os
+                    vencedores avançam para a próxima etapa do torneio e os 
+                    perdedores são eliminados. O número mínimo de participantes 
+                    é 9 e o máximo é 16. Caso o torneio na possua 16 
+                    participantes até o final das inscrções, são adicionados
+                    jogadores nulos, os quais devem perder para qualquer
+                    participante do torneio por capote. O vencedor é aquele que
+                    vencer a final.
+    
+
+    ATRIBUTO participantesAtuais: Variável privada do tipo 
+ArrayList<Participante> a qual armazena os jogadores que não foram elinados do
+torneio até o jogo atual;
+
+
+    MÉTODO MataMata(): Construtor Padrão;
+    
+    MÉTODO MataMata(String nome, String descricao, ...): Construtor que
+incializa os atributos da classe pai e a variável participantesAtuais;
+    
+    MÉTODO setResultadoPartida: Atribui um resultado a partida atual do torneio;    
+    
+    MÉTODO getProximaPartida: Retorna a próxima partida do torneio;
+    
+    MÉTODO getCampeao: Retorna o campeão do Torneio;
+
+    MÉTODO generateOitavasFinal: Cria as partidas da fase de Oitavas de Final do
+torneio;
+
+    MÉTODO generateQuartasFinal: Cria as partidas da fase de Quartas de Final do
+torneio;
+
+    MÉTODO generateSemiFinal: Cria as partidas das Semifinais do torneio;
+    
+    MÉTODO generateFinal: Cria a partida da final do torneio;
+
+    MÉTODO refazerParticipantesAtuais: Recria as lista de participantes que 
+ainda estão no torneio quando o aplicativo é inciado;
+
+*/
 public class MataMata extends Torneio implements gerenciarTorneio{
     private ArrayList<Participante> participantesAtuais = new ArrayList();
     
@@ -33,6 +78,8 @@ public class MataMata extends Torneio implements gerenciarTorneio{
         this.participantesAtuais.add(p.getVencedor());
         if(this.partidaAtual < this.numPartidas){
             this.partidaAtual++;
+            TorneioService ts = new TorneioService();
+            ts.updateTorneio(this);
         } 
         
         if(this.getStatusTorneio() >= 2 && this.getPartidaAtual() == 8){
@@ -58,8 +105,11 @@ public class MataMata extends Torneio implements gerenciarTorneio{
     
     public void generateOitavasFinal(){
         Collections.shuffle(this.participantes);
+        
+        System.out.println(16 -this.participantes.size());
         if(this.participantes.size() < 16){
-            for(int i = 0; i < 16 - this.participantes.size(); i++){
+            int n = (16 - this.participantes.size());
+            for(int i = 0; i < n; i++){
                 this.participantes.add(new Participante(-1, "loser", "loser", "loser", "loser"));
             }
         }

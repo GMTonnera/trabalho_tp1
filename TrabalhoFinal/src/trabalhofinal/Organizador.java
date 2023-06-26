@@ -8,6 +8,29 @@ package trabalhofinal;
  *
  * @author guton
  */
+/*
+CLASSE Organizador --> Classe filha da Classe Abstrata Usuario. Representa um
+                       cadastro responsável por criar e administrar torneios de
+                       sinuca.
+    
+
+    ATRIBUTO numTorneiosCriados: Variável privada do tipo  int a qual armazena
+quantos torneios o Organizador já criou;
+
+
+    MÉTODO Organizador(): Construtor Padrão;
+    
+    MÉTODO Organizador(int id, ..., String senha): Construtor que incializa os
+atributos da classe pai e o atributo numTorneiosCriados como 0;
+    
+    MÉTODO Organizador(int id, ..., int numTorneiosCriados): Construtor que
+incializa os atributos da classe pai e o numTorneiosCriados;
+
+    MÉTODO getNumTorneiosCriados: Retorna o valor de numTorneiosCriados;    
+    
+    MÉTODO setNumTorneiosCriados: Atribui um novo valor a numTorneiosCriados;   
+ 
+*/
 public class Organizador extends Usuario{
     private int numTorneiosCriados;
     
@@ -31,10 +54,5 @@ public class Organizador extends Usuario{
     
     public void setNumTorneiosCriados(int num){
         this.numTorneiosCriados = num;
-    }
-    
-    public void criarTorneio(){}
-    
-    public void encerrarTorneio(){}
-    
+    }    
 }

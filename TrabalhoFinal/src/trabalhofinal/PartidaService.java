@@ -8,6 +8,28 @@ package trabalhofinal;
  *
  * @author Vini
  */
+
+/*
+CLASSE PartidaService --> Classe responsável por fornecer servições para 
+                          alterar/criar objetos da Classe Partida no banco de
+                          dados.
+    
+
+    ATRIBUTO connect: Variável do tipo ConnectDB responsável por realizar a
+conexão com o banco de dados;
+
+
+    MÉTODO createPartida: Método responsável por criar uma Partida;
+    
+    MÉTODO findOnePartida: Método responsável por achar uma Partida no banco de
+dados dado um id;
+
+    MÉTODO addPatidaResult: Método responsável por achar todos os objetos
+Partida presentes no banco de dados;    
+
+    MÉTODO deletePartida: Deleta uma Partida do banco de dados dado um id;
+
+*/
 public class PartidaService {
   ConnectDB db = new ConnectDB();
 

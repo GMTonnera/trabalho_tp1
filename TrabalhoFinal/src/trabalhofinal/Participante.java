@@ -8,6 +8,66 @@ package trabalhofinal;
  *
  * @author guton
  */
+/*
+CLASSE Participante --> Classe filha da Classe Abstrata Usuario. Representa um
+                        jogador responsável participar e se inscrever nos 
+                        torneios;
+    
+
+    ATRIBUTO numVitorias: Variável privada do tipo  int a qual armazena
+o número de vitórias do jogador;
+    
+    ATRIBUTO numDerrotas: Variável privada do tipo  int a qual armazena
+o número de derrotas do jogador;
+    
+    ATRIBUTO numCapotesRecebidos: Variável privada do tipo  int a qual armazena
+o número de capotes recebidos pelo jogador;
+    
+    ATRIBUTO umCapotesAplicados: Variável privada do tipo  int a qual armazena
+o número de  capotes aplicados pelo jogador;
+    
+    ATRIBUTO numTorneiosJogados: Variável privada do tipo  int a qual armazena
+o número de torneios jogados pelo jogador;
+    
+    ATRIBUTO numTorneiosJogados: Variável privada do tipo  int a qual armazena
+o número de torneios vencidos pelo jogador;
+    
+
+    MÉTODO Participante(): Construtor Padrão;
+
+    MÉTODO Participante(ind id): Inicializa apenas o valor do atributo id;
+    
+    MÉTODO Participante(int id, ..., String senha): Construtor que incializa os
+atributos da classe pai e os atributos como 0;
+    
+    MÉTODO Participante(int id, ..., int numTorneiosVencidos): Construtor que
+incializa os atributos da classe pai e os demais atributos;
+
+    MÉTODO getNumVitorias:  Retorna o valor de numVitorias;
+
+    MÉTODO setNumVitorias: Atribui um novo valor a numVitorias; 
+    
+    MÉTODO getNumDerrotas:  Retorna o valor de numDerrotas;
+
+    MÉTODO setNumDerrotas: Atribui um novo valor a numDerrotas; 
+    
+    MÉTODO getCapotesRecebidos:  Retorna o valor de capotesRecebidos;
+
+    MÉTODO setCapotesRecebidos: Atribui um novo valor a capotesRecebidos; 
+    
+    MÉTODO getCapotesAplicados:  Retorna o valor de capotesAplicados;
+    
+    MÉTODO setCapotesAplicados: Atribui um novo valor a capotesAplicados; 
+    
+    MÉTODO getNumTorneiosJogados:  Retorna o valor de numTorneiosJogados;
+    
+    MÉTODO setNumTorneiosJogados: Atribui um novo valor a numTorneiosJogados; 
+    
+    MÉTODO getNumTorneiosVencidos:  Retorna o valor de numTorneiosVencidos;
+    
+    MÉTODO setNumTorneiosVencidos: Atribui um novo valor a numTorneiosVencidos; 
+ 
+*/
 public class Participante extends Usuario{
     private int numVitorias, numDerrotas, capotesRecebidos, capotesAplicados, numTorneiosJogados, numTorneiosVencidos;
     
@@ -89,10 +149,4 @@ public class Participante extends Usuario{
     public void setNumTorneiosVencidos(int num){
         this.numTorneiosVencidos = num;
     }
-    
-    public void incricaoTorneio(Torneio t){}
-    
-    public void cancelarInscricao(Torneio t){}
-    
-    
 }
