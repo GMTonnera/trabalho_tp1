@@ -13,7 +13,7 @@ import java.util.Collections;
  * @author guton
  */
 public class MataMata extends Torneio implements gerenciarTorneio{
-    private ArrayList<Participante> participantesAtuais;
+    private ArrayList<Participante> participantesAtuais = new ArrayList();
     
     MataMata(){
         super();
@@ -81,5 +81,27 @@ public class MataMata extends Torneio implements gerenciarTorneio{
         Partida p = new Partida(TrabalhoFinal.currentPartidaId, this.participantesAtuais.get(0), this.participantesAtuais.get(1));
         this.partidas.add(p);
         TrabalhoFinal.currentPartidaId++;
+    }
+    
+    public void refazerParticipantesAtuais(){
+        if(this.partidaAtual <= 8){
+            for(Partida p : this.partidas){
+                if(p.getVencedor().getId() != -1){
+                    this.participantesAtuais.add(p.getVencedor());
+                }
+            }
+        } else if(this.partidaAtual <= 12){
+            for(Partida p : this.partidas.subList(8, 12)){
+                if(p.getVencedor().getId() != -1){
+                    this.participantesAtuais.add(p.getVencedor());
+                }
+            }
+        } else if(this.partidaAtual <= 14){
+            for(Partida p : this.partidas.subList(12, 14)){
+                if(p.getVencedor().getId() != -1){
+                    this.participantesAtuais.add(p.getVencedor());
+                }
+            }
+        }
     }
 }
