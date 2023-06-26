@@ -16,7 +16,7 @@ public class Partida {
     private Participante vencedor;
     private Participante perdedor;
     
-    Partida(){
+    public Partida(){
         this.resultado = new ArrayList<>();
         this.capote = false;
     }
@@ -28,7 +28,7 @@ public class Partida {
         this.p1 = p1;
         this.p2 = p2;
     }
-
+    
     public int getId() {
         return id;
     }

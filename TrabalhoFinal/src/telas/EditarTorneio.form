@@ -30,7 +30,9 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
                               <Component id="lblPartidaAtual" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="118" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="lblNumPartidaAtual" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="69" max="-2" attributes="0"/>
                               <Component id="lblNomeJogadores" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
@@ -76,6 +78,7 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lblPartidaAtual" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="lblNomeJogadores" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblNumPartidaAtual" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -141,6 +144,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Adicionar Resultado"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAdicionarResultadoActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JCheckBox" name="ckxCapote">
       <Properties>
@@ -150,6 +156,11 @@
     <Component class="javax.swing.JButton" name="btnEncerrar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Encerrar Torneio"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblNumPartidaAtual">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="2"/>
       </Properties>
     </Component>
   </SubComponents>
