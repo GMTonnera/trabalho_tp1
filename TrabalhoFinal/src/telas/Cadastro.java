@@ -52,6 +52,7 @@ public class Cadastro extends javax.swing.JFrame {
 
         pnlCadastro.setBorder(javax.swing.BorderFactory.createTitledBorder("Cadastro"));
 
+        txtEmail.setText("robertinho@gmail.com");
         txtEmail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtEmailActionPerformed(evt);
@@ -78,7 +79,17 @@ public class Cadastro extends javax.swing.JFrame {
 
         lblNome.setText("Nome");
 
+        txtNome.setText("Ex: Robertinho");
+        txtNome.setToolTipText("");
+        txtNome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNomeActionPerformed(evt);
+            }
+        });
+
         lblCurso.setText("Curso");
+
+        txtCurso.setText("Ciência da Computação");
 
         cbxTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "jogador", "organizador" }));
 
@@ -222,6 +233,10 @@ public class Cadastro extends javax.swing.JFrame {
     private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jPasswordField1ActionPerformed
+
+    private void txtNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNomeActionPerformed
 
     /**
      * @param args the command line arguments

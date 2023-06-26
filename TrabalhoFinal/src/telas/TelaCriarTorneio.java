@@ -63,6 +63,7 @@ public class TelaCriarTorneio extends javax.swing.JFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        ftxtInicioJogos.setText("2023-07-01");
         ftxtInicioJogos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ftxtInicioJogosActionPerformed(evt);
@@ -71,10 +72,14 @@ public class TelaCriarTorneio extends javax.swing.JFrame {
 
         lblPeriodoJogos.setText("Período dos jogos (dias):");
 
+        txtPeriodoJogos.setText("Ex: 10");
+
         lblTitulo.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         lblTitulo.setText("Criar Torneio");
 
         lblNome.setText("Nome:");
+
+        txtNome.setText("Ex: Torneio Irado");
 
         btnCriar.setText("Criar");
         btnCriar.addActionListener(new java.awt.event.ActionListener() {
@@ -89,11 +94,14 @@ public class TelaCriarTorneio extends javax.swing.JFrame {
 
         txtaDescricao.setColumns(20);
         txtaDescricao.setRows(5);
+        txtaDescricao.setText("Ex: Torneio para comemorar o aniversário do Seu Zé");
         jScrollPane1.setViewportView(txtaDescricao);
 
         cbxRegra.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sinuquinha", "Bola 8" }));
 
         lblLocal.setText("Local:");
+
+        txtLocal.setText("Ex: Cacomp");
 
         lblTipo.setText("Tipo:");
 
@@ -106,6 +114,8 @@ public class TelaCriarTorneio extends javax.swing.JFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        ftxtInicioInscr.setText("2023-06-26");
+        ftxtInicioInscr.setToolTipText("");
         ftxtInicioInscr.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ftxtInicioInscrActionPerformed(evt);
@@ -113,6 +123,13 @@ public class TelaCriarTorneio extends javax.swing.JFrame {
         });
 
         lblPeriodoInscr.setText("Período de inscrições (dias):");
+
+        txtPeriodoInscr.setText("Ex: 10 ");
+        txtPeriodoInscr.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPeriodoInscrActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -210,12 +227,19 @@ public class TelaCriarTorneio extends javax.swing.JFrame {
 
     private void btnCriarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCriarActionPerformed
         // TODO add your handling code here:
+        System.out.println(LocalDate.parse(this.ftxtInicioInscr.getText()).plusDays(Integer.parseInt(this.txtPeriodoInscr.getText())));
+        System.out.println(LocalDate.parse(this.ftxtInicioInscr.getText()).plusDays(Integer.parseInt(this.txtPeriodoInscr.getText())).compareTo( LocalDate.parse(this.ftxtInicioJogos.getText())));
         if(this.txtLocal.getText().equals("") || this.txtNome.getText().equals("") || 
            this.txtPeriodoInscr.getText().equals("") || this.txtPeriodoJogos.getText().equals("") || this.txtaDescricao.getText().equals("") || 
            this.ftxtInicioJogos.getText().equals("") || this.ftxtInicioInscr.getText().equals("")){
             JOptionPane.showMessageDialog(null, "Por favor, preencha todos os campos!", "Mensagem", JOptionPane.INFORMATION_MESSAGE);
+        } else if(LocalDate.now().compareTo(LocalDate.parse(this.ftxtInicioInscr.getText())) > 0){
+            JOptionPane.showMessageDialog(null, "Por favor, digite uma data válida! Não é possível criar torneios com data de inscrição anterior ao dia de hoje.", "Mensagem", JOptionPane.INFORMATION_MESSAGE);
+        } else if(LocalDate.parse(this.ftxtInicioInscr.getText()).plusDays(Integer.parseInt(this.txtPeriodoInscr.getText())).compareTo( LocalDate.parse(this.ftxtInicioJogos.getText())) > 0){
+            JOptionPane.showMessageDialog(null, "Por favor, digite uma data válida!", "Mensagem", JOptionPane.INFORMATION_MESSAGE);
         } else{
-            TrabalhoFinal.criarTorneio(this.txtNome.getText(),
+            if(cbxRegra.getSelectedIndex() == 0){
+                TrabalhoFinal.criarTorneio(this.txtNome.getText(),
                                    this.txtaDescricao.getText(),
                                    this.txtLocal.getText(),
                                    LocalDate.parse(this.ftxtInicioJogos.getText()),
@@ -226,6 +250,22 @@ public class TelaCriarTorneio extends javax.swing.JFrame {
                                    (Organizador) TrabalhoFinal.login,
                                    this.cbxTipo.getSelectedIndex()
                                    );
+            
+            } else{
+                TrabalhoFinal.criarTorneio(this.txtNome.getText(),
+                                   this.txtaDescricao.getText(),
+                                   this.txtLocal.getText(),
+                                   LocalDate.parse(this.ftxtInicioJogos.getText()),
+                                   LocalDate.parse(this.ftxtInicioInscr.getText()),
+                                   Integer.parseInt(this.txtPeriodoJogos.getText()),
+                                   Integer.parseInt(this.txtPeriodoInscr.getText()),
+                                   "Bola 8",
+                                   (Organizador) TrabalhoFinal.login,
+                                   this.cbxTipo.getSelectedIndex()
+                                   );
+            
+            }
+            
             
             JOptionPane.showMessageDialog(null, "Torneio criado com sucesso!", "Mensagem", JOptionPane.INFORMATION_MESSAGE);
             this.txtLocal.setText("");
@@ -245,6 +285,10 @@ public class TelaCriarTorneio extends javax.swing.JFrame {
     private void ftxtInicioJogosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ftxtInicioJogosActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_ftxtInicioJogosActionPerformed
+
+    private void txtPeriodoInscrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPeriodoInscrActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPeriodoInscrActionPerformed
 
     /**
      * @param args the command line arguments

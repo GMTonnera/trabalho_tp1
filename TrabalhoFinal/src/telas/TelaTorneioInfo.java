@@ -4,6 +4,7 @@
  */
 package telas;
 
+import java.time.LocalDate;
 import javax.swing.JOptionPane;
 import trabalhofinal.TrabalhoFinal;
 import trabalhofinal.Organizador;
@@ -26,6 +27,12 @@ public class TelaTorneioInfo extends javax.swing.JFrame {
     }
     
     public void setup(){
+        if(TrabalhoFinal.currentTorneio.getStatusTorneio() < 2){
+            this.btnPontuacao.setVisible(false);
+            this.btnEditarTorneio.setVisible(false);
+        }
+        
+        
         if(TrabalhoFinal.login instanceof Organizador){
             this.btnCancelaInscr.setVisible(false);
             this.btnInscricao.setVisible(false);
@@ -156,7 +163,7 @@ public class TelaTorneioInfo extends javax.swing.JFrame {
 
         lblMaxPart.setText("Máximo de participantes:");
 
-        btnEditarTorneio.setText("Editar Torneio");
+        btnEditarTorneio.setText("Atualiar Resultados");
         btnEditarTorneio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEditarTorneioActionPerformed(evt);
@@ -345,21 +352,29 @@ public class TelaTorneioInfo extends javax.swing.JFrame {
 
     private void btnInscricaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInscricaoActionPerformed
         // TODO add your handling code here:
-        if(TrabalhoFinal.isInscrito()){
-            JOptionPane.showMessageDialog(null, "Você já está inscrito nesse torneio!", "Mensagem", JOptionPane.INFORMATION_MESSAGE);
+        if(LocalDate.now().compareTo(TrabalhoFinal.currentTorneio.getDataInicioInscricao()) >= 0 && LocalDate.now().compareTo(TrabalhoFinal.currentTorneio.getFimInscricao()) <= 0){
+            if(TrabalhoFinal.isInscrito()){
+                JOptionPane.showMessageDialog(null, "Você já está inscrito nesse torneio!", "Mensagem", JOptionPane.INFORMATION_MESSAGE);
+            } else{
+                TrabalhoFinal.inscricao();
+                JOptionPane.showMessageDialog(null, "Inscrição realizada!", "Mensagem", JOptionPane.INFORMATION_MESSAGE);
+            }
         } else{
-            TrabalhoFinal.inscricao();
-            JOptionPane.showMessageDialog(null, "Inscrição realizada!", "Mensagem", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Período de inscrições não começou ou já acabou!", "Mensagem", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_btnInscricaoActionPerformed
 
     private void btnCancelaInscrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelaInscrActionPerformed
         // TODO add your handling code here:
-        if(TrabalhoFinal.isInscrito()){
-            JOptionPane.showMessageDialog(null, "Inscrição cancelada com sucesso!", "Mensagem", JOptionPane.INFORMATION_MESSAGE);
-            TrabalhoFinal.cancelarInscricao();
+        if(LocalDate.now().compareTo(TrabalhoFinal.currentTorneio.getDataInicioInscricao()) >= 0 && LocalDate.now().compareTo(TrabalhoFinal.currentTorneio.getFimInscricao()) <= 0){
+            if(TrabalhoFinal.isInscrito()){
+                JOptionPane.showMessageDialog(null, "Inscrição cancelada com sucesso!", "Mensagem", JOptionPane.INFORMATION_MESSAGE);
+                TrabalhoFinal.cancelarInscricao();
+            } else{
+                JOptionPane.showMessageDialog(null, "Você não está inscrito nesse torneio!", "Mensagem", JOptionPane.INFORMATION_MESSAGE);
+            }
         } else{
-            JOptionPane.showMessageDialog(null, "Você não está inscrito nesse torneio!", "Mensagem", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Período de inscrições não começou ou já acabou!", "Mensagem", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_btnCancelaInscrActionPerformed
 

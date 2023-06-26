@@ -33,12 +33,12 @@ public class LigaPontuacao extends javax.swing.JFrame {
         ParticipanteService ps = new ParticipanteService();
         System.out.println(tabela.size());
         for(int i = 0; i < tabela.size(); i++){
-            int id = tabela.get(i).get(1);
+            int id = tabela.get(i).get(0);
             Object linha[] = new Object[]{i+1,
                                           ps.findOneParticipante(id).getNome(),
+                                          tabela.get(i).get(1),
                                           tabela.get(i).get(2),
                                           tabela.get(i).get(3),
-                                          tabela.get(i).get(4),
                                         };
             modelo.addRow(linha);
         }

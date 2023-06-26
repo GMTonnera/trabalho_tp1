@@ -24,10 +24,10 @@ public class EditarTorneio extends javax.swing.JFrame {
     public EditarTorneio() {
         initComponents();
         setLocationRelativeTo(null);
-        setup();
+        this.setup();
     }
     
-    private void setup() {
+     private void setup() {
         Torneio t = TrabalhoFinal.currentTorneio;
         
         if(t instanceof MataMata)
@@ -93,7 +93,7 @@ public class EditarTorneio extends javax.swing.JFrame {
 
         btnEncerrar.setText("Encerrar Torneio");
 
-        lblNumPartidaAtual.setText("2");
+        lblNumPartidaAtual.setText("jLabel1");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -106,9 +106,9 @@ public class EditarTorneio extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(lblPartidaAtual)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(lblNumPartidaAtual)
-                                .addGap(69, 69, 69)
+                                .addGap(75, 75, 75)
                                 .addComponent(lblNomeJogadores))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(lblNumeroJogo)
@@ -168,6 +168,7 @@ public class EditarTorneio extends javax.swing.JFrame {
     }//GEN-LAST:event_txtPontosJogador2ActionPerformed
 
     private void btnAdicionarResultadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarResultadoActionPerformed
+        // TODO add your handling code here:
         int pontuacaoPrimeiroJogador = Integer.parseInt(this.txtPontosJogador1.getText());
         int pontuacaoSegundoJogador = Integer.parseInt(this.txtPontosJogador2.getText());
         boolean capote = this.ckxCapote.isSelected();
@@ -179,7 +180,11 @@ public class EditarTorneio extends javax.swing.JFrame {
         p.setCapote(capote);
         p.setResultado(result);
         
-        ((MataMata) TrabalhoFinal.currentTorneio).setResultadoPartida(result, capote);
+        if(TrabalhoFinal.currentTorneio instanceof MataMata){
+            ((MataMata) TrabalhoFinal.currentTorneio).setResultadoPartida(result, capote);
+        } else{
+            ((Liga) TrabalhoFinal.currentTorneio).setResultadoPartida(result, capote);
+        }
         
         PartidaService ps = new PartidaService();
         
@@ -193,7 +198,10 @@ public class EditarTorneio extends javax.swing.JFrame {
         
         setup();
     }//GEN-LAST:event_btnAdicionarResultadoActionPerformed
-
+    
+    
+    
+    
     /**
      * @param args the command line arguments
      */

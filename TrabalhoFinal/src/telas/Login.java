@@ -47,6 +47,7 @@ public class Login extends javax.swing.JFrame {
 
         pnlLogin.setBorder(javax.swing.BorderFactory.createTitledBorder("Login"));
 
+        txtEmail.setText("robertinho@gmail.com");
         txtEmail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtEmailActionPerformed(evt);
@@ -68,6 +69,13 @@ public class Login extends javax.swing.JFrame {
         btnLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLoginActionPerformed(evt);
+            }
+        });
+
+        jPasswordField1.setText("fadsfadsfa");
+        jPasswordField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jPasswordField1ActionPerformed(evt);
             }
         });
 
@@ -174,6 +182,10 @@ public class Login extends javax.swing.JFrame {
         this.setVisible(false);
         new Cadastro().setVisible(true);
     }//GEN-LAST:event_lblCadastroMouseClicked
+
+    private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPasswordField1ActionPerformed
 
     /**
      * @param args the command line arguments
