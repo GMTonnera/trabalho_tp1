@@ -23,7 +23,7 @@ public class TrabalhoFinal {
     public static Usuario login;
     public static int currentTornamentId, currentOrganizadorId, currentParticipanteId;
     public static Torneio currentTorneio = new Torneio(-1);
-    public static int currentPartidaId = 2040;
+    public static int currentPartidaId = 0;
     public static ArrayList<Torneio> torneios = new ArrayList();
     public static ArrayList<Participante> participantes = new ArrayList();
     public static ArrayList<Organizador> organizadores = new ArrayList();
@@ -36,7 +36,7 @@ public class TrabalhoFinal {
         TrabalhoFinal.gerarListaTorneios();
         TrabalhoFinal.gerarListaParticipantes();
         TrabalhoFinal.gerarListaOrganizadores();
-        // TrabalhoFinal.resultadosPartidas();
+        TrabalhoFinal.resultadosPartidas();
         
         // adicionarUsuarios(100, 10);
         // criarTorneios(10, 10);
@@ -283,23 +283,22 @@ public class TrabalhoFinal {
             if(t.getStatusTorneio() == 2 && t.getPartidaAtual() == 0){
                 if(t instanceof MataMata){
                     ((MataMata) t).generateOitavasFinal();
-                } else{
+                } else {
                     ((Liga) t).criarPartidas();
                     ((Liga) t).inicializarTabela();
                 }
-            } else if(t.getStatusTorneio() == 2 && t.getPartidaAtual() == 8 && t instanceof MataMata){
+            } else if(t.getStatusTorneio() >= 2 && t.getPartidaAtual() == 8 && t instanceof MataMata){
                 ((MataMata) t).refazerParticipantesAtuais();
                 ((MataMata) t).generateQuartasFinal();
             } else if(t.getStatusTorneio() == 2 && t.getPartidaAtual() == 12 && t instanceof MataMata){
-                System.out.println("ok");
                 ((MataMata) t).refazerParticipantesAtuais();
                 ((MataMata) t).generateSemiFinal();
             } else if(t.getStatusTorneio() == 2 && t.getPartidaAtual() == 14 && t instanceof MataMata){
                 ((MataMata) t).refazerParticipantesAtuais();
                 ((MataMata) t).generateFinal();
-            } else if(t.getStatusTorneio() == 2 && t instanceof Liga){
-                    ((Liga) t).inicializarTabela();
-                    ((Liga) t).atualizarTabela();
+            } else if(t.getStatusTorneio() >= 2 && t instanceof Liga){
+                ((Liga) t).inicializarTabela();
+                ((Liga) t).atualizarTabela();
             }
             
             for(Partida p : t.getPartidas()){

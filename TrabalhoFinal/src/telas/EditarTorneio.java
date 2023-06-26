@@ -5,8 +5,11 @@
 package telas;
 
 import java.util.ArrayList;
+import trabalhofinal.Liga;
+import trabalhofinal.MataMata;
 import trabalhofinal.Partida;
 import trabalhofinal.PartidaService;
+import trabalhofinal.Torneio;
 import trabalhofinal.TrabalhoFinal;
 
 /**
@@ -21,12 +24,16 @@ public class EditarTorneio extends javax.swing.JFrame {
     public EditarTorneio() {
         initComponents();
         setLocationRelativeTo(null);
-        setup(); 
+        setup();
     }
     
     private void setup() {
-        System.out.println(TrabalhoFinal.currentTorneio.getPartidas().size());
-        p = TrabalhoFinal.currentTorneio.getPartidas().get(TrabalhoFinal.currentTorneio.getPartidaAtual());   
+        Torneio t = TrabalhoFinal.currentTorneio;
+        
+        if(t instanceof MataMata)
+            p = ((MataMata) t).getProximaPartida();
+        else
+            p = ((Liga) t).getProximaPartida();
         
         this.lblNomeJogadores.setText(p.getP1().getNome() + " X " + p.getP2().getNome());
         this.lblNumPartidaAtual.setText("" + TrabalhoFinal.currentTorneio.getPartidaAtual());
@@ -172,6 +179,8 @@ public class EditarTorneio extends javax.swing.JFrame {
         p.setCapote(capote);
         p.setResultado(result);
         
+        ((MataMata) TrabalhoFinal.currentTorneio).setResultadoPartida(result, capote);
+        
         PartidaService ps = new PartidaService();
         
         ps.addPatidaResult(p.getId(), pontuacaoPrimeiroJogador, pontuacaoSegundoJogador, capote);
@@ -180,7 +189,8 @@ public class EditarTorneio extends javax.swing.JFrame {
         this.txtPontosJogador2.setText("");
         this.ckxCapote.setSelected(false);
         
-        TrabalhoFinal.currentTorneio.setPartidaAtual(TrabalhoFinal.currentTorneio.getPartidaAtual()+1);
+        Torneio t = TrabalhoFinal.currentTorneio;
+        
         setup();
     }//GEN-LAST:event_btnAdicionarResultadoActionPerformed
 

@@ -696,6 +696,45 @@ public class ConnectDB {
     return res;
   }
 
+  public void updateParticipante(Participante p) {
+    Connection conn = connect();
+
+    String sql = "UPDATE partida SET " 
+      + "nome = ?," 
+      + "email = ?," 
+      + "curso = ? "
+      + "senha = ? "
+      + "numVitorias = ? "
+      + "numDerrotas = ? "
+      + "capotesAplicados = ? "
+      + "capotesRecebidos = ? "
+      + "numTorneioJogados = ? "
+      + "numTorneiosVencidos = ? "
+      + "WHERE id = ?";
+    
+     try {
+       PreparedStatement pstmt = conn.prepareStatement(sql);
+
+       pstmt.setString(1, p.getNome());
+       pstmt.setString(2, p.getEmail());
+       pstmt.setString(3, p.getCurso());
+       pstmt.setString(4, p.getSenha());
+       pstmt.setInt(5, p.getNumVitorias());
+       pstmt.setInt(6, p.getNumDerrotas());
+       pstmt.setInt(7, p.getCapotesAplicados());
+       pstmt.setInt(8, p.getCapotesRecebidos());
+       pstmt.setInt(9, p.getNumTorneiosJogados());
+       pstmt.setInt(10, p.getNumTorneiosVencidos());
+       pstmt.setInt(11, p.getId());
+
+       pstmt.executeUpdate();
+
+       conn.close();
+     } catch(SQLException e) {
+       System.out.println(e.getMessage());
+     }
+  }
+
   public void deleteParticipante(int id) {
     Connection conn = connect();
 

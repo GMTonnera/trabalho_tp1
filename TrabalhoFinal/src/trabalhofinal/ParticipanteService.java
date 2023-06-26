@@ -17,6 +17,10 @@ public class ParticipanteService {
     this.connect.createParticipante(participante);
   }   
 
+  public void updateParticipante(Participante p) {
+    this.connect.updateParticipante(p);
+  }
+
   public Participante findOneParticipante(int id) {
     return this.connect.findParticipante(id);
   }

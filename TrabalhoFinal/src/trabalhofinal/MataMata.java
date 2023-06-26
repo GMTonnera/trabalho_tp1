@@ -34,6 +34,17 @@ public class MataMata extends Torneio implements gerenciarTorneio{
         if(this.partidaAtual < this.numPartidas){
             this.partidaAtual++;
         } 
+        
+        if(this.getStatusTorneio() >= 2 && this.getPartidaAtual() == 8){
+            //((MataMata) t).refazerParticipantesAtuais();
+            this.generateQuartasFinal();
+        } else if(this.getStatusTorneio() == 2 && this.getPartidaAtual() == 12){
+            //((MataMata) t).refazerParticipantesAtuais();
+                this.generateSemiFinal();
+        } else if(this.getStatusTorneio() == 2 && this.getPartidaAtual() == 14){
+            //((MataMata) t).refazerParticipantesAtuais();
+            this.generateFinal();
+        }
     };
     
     
